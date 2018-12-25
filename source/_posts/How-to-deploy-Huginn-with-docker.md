@@ -1,7 +1,11 @@
 ---
 title: How to deploy Huginn with docker
 date: 2018-12-24 16:04:40
-tags: huginn
+tags:
+- huginn
+- docker
+categories:
+- vps
 ---
 
 1. Deploy a huginn server with docker:
