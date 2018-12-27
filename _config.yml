@@ -80,6 +80,9 @@ flowchart:
   # flowchart: # optional, the source url of flowchart.js
   options: # options used for `drawSVG`
 
+sitemap:
+  path: sitemap.xml
+
 ## Themes: https://hexo.io/themes/
 theme: next
 
