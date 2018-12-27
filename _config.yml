@@ -8,15 +8,18 @@ subtitle:
 description:
 keywords:
 author: tonybuaa
-language: zh
+language:
+- zh-CN
+- en
 timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://tonybuaa.github.io
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :lang/:year/:month/:day/:title/
 permalink_defaults:
+  lang: zh-CN
 
 # Directory
 source_dir: source

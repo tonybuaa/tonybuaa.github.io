@@ -4,8 +4,9 @@ date: 2018-12-24 16:04:40
 tags:
 - huginn
 - docker
-categories:
 - vps
+categories: Technology
+lang: en
 ---
 
 1. Deploy a huginn server with docker:

@@ -4,8 +4,9 @@ date: 2018-12-25 18:32:08
 tags:
 - webdav
 - docker
-categories:
 - vps
+categories: Technology
+lang: en
 ---
 
 Use this command to start a webdav server.

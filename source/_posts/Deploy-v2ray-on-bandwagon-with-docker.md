@@ -4,8 +4,9 @@ date: 2018-12-25 18:15:31
 tags:
 - docker
 - v2ray
-categories:
 - vps
+categories: Technology
+lang: en
 ---
 
 1. Pull v2ray official image
