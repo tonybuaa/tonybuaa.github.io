@@ -14,7 +14,7 @@ lang: en
 docker pull v2ray/official
 ```
 2. Prepare `config.json`. Then create `v2ray` folder under /etc, and copy `config.json` into it.
-```
+``` json
 {
     "log": {
         "access": "/var/log/v2ray/access.log",

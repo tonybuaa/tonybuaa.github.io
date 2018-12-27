@@ -11,16 +11,16 @@ lang: en
 
 1. Deploy a huginn server with docker:
 
-    ```
+    ``` bash
     docker run -it -p 3000:3000 -v /home/huginn/mysql-data:/var/lib/mysql huginn/huginn
     ```
     If following error is observed:
-    ```
+    ``` bash
     bootstrap stderr | mv:  bootstrap stderr | cannot create directory ‘/var/lib/mysql/mysql’ bootstrap stderr | : Permission denied bootstrap stderr |
     bootstrap stderr | mv:  bootstrap stderr | cannot create directory ‘/var/lib/mysql/performance_schema’ bootstrap stderr | : Permission denied bootstrap stderr |
     ```
     then run:
-    ```
+    ``` bash
     chown 1001:1001 mysql-data/
     ```
 
@@ -29,7 +29,7 @@ lang: en
 3. Log in to your Huginn instance using the username  `admin`  and password `password`
 
 4. Modify .env file in container:
-    ```
+    ``` bash
     docker exec -it mystifying_buck bash
     vi /app/.env
     ```
@@ -40,6 +40,6 @@ lang: en
     ```
     Save and exit container.
 5. Restart container to take effect:
-    ```
+    ``` bash
     docker container restart mystifying_buck
     ```
