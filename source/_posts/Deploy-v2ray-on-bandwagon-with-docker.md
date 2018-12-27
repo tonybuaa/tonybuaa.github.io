@@ -10,7 +10,7 @@ lang: en
 ---
 
 1. Pull v2ray official image
-```
+``` bash
 docker pull v2ray/official
 ```
 2. Prepare `config.json`. Then create `v2ray` folder under /etc, and copy `config.json` into it.
@@ -105,6 +105,6 @@ docker pull v2ray/official
 }
 ```
 3. Deploy
-```
+``` bash
 docker run -d --name v2ray -v /etc/v2ray:/etc/v2ray -p 527:527 -p 527:527/udp v2ray/official v2ray -config=/etc/v2ray/config.json
 ```
