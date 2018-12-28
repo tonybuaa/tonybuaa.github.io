@@ -83,6 +83,14 @@ flowchart:
 sitemap:
   path: sitemap.xml
 
+douban:
+  user: 63527873
+  builtin: false
+  movie:
+    title: '我的豆瓣电影'
+    quote: '记录我看的电影'
+  timeout: 10000 
+
 ## Themes: https://hexo.io/themes/
 theme: next
 

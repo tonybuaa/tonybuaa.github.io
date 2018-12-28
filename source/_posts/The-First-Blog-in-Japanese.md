@@ -1,7 +1,7 @@
 ---
 title: 最初の日本語ブログ
 date: 2018-12-27 11:13:35
-tags:
+tags: Japanese
 categories:
 lang: ja
 ---
