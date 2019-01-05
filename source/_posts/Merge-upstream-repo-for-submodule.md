@@ -1,7 +1,9 @@
 ---
 title: Merge upstream repo for submodule
 date: 2018-12-28 09:39:12
-tags: git
+tags: 
+- git
+- hexo
 categories: Technology
 lang: en
 ---
