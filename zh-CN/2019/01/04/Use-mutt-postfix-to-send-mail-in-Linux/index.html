@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN,en,default">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="折腾VPS上发邮件的原因是公司的WIFI从外网下载太慢，如果能够直接把文件下载到VPS上再用邮件塞到公司邮箱中下载，应该会快很多。我选择用Gmail来发送邮件，所以postfix的配置是Gmail的。 Postfix Postfix的安装配置主要参考这篇文章：Configure Postfix to Send Mail Using Gmail and Google Apps on Debian o">
+<meta name="keywords" content="vps">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Use mutt&#x2F;postfix to send mail in Linux">
+<meta property="og:url" content="https://tonybuaa.github.io/zh-CN/2019/01/04/Use-mutt-postfix-to-send-mail-in-Linux/index.html">
+<meta property="og:site_name" content="Log my life">
+<meta property="og:description" content="折腾VPS上发邮件的原因是公司的WIFI从外网下载太慢，如果能够直接把文件下载到VPS上再用邮件塞到公司邮箱中下载，应该会快很多。我选择用Gmail来发送邮件，所以postfix的配置是Gmail的。 Postfix Postfix的安装配置主要参考这篇文章：Configure Postfix to Send Mail Using Gmail and Google Apps on Debian o">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-10T02:49:00.148Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Use mutt&#x2F;postfix to send mail in Linux">
+<meta name="twitter:description" content="折腾VPS上发邮件的原因是公司的WIFI从外网下载太慢，如果能够直接把文件下载到VPS上再用邮件塞到公司邮箱中下载，应该会快很多。我选择用Gmail来发送邮件，所以postfix的配置是Gmail的。 Postfix Postfix的安装配置主要参考这篇文章：Configure Postfix to Send Mail Using Gmail and Google Apps on Debian o">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tonybuaa.github.io/2019/01/04/Use-mutt-postfix-to-send-mail-in-Linux/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Use mutt/postfix to send mail in Linux | Log my life</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131195761-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-131195761-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Log my life</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>电影</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/zh-CN/2019/01/04/Use-mutt-postfix-to-send-mail-in-Linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tonybuaa">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Log my life">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Use mutt/postfix to send mail in Linux
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-04 15:51:58" itemprop="dateCreated datePublished" datetime="2019-01-04T15:51:58+08:00">2019-01-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-10 10:49:00" itemprop="dateModified" datetime="2019-06-10T10:49:00+08:00">2019-06-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/zh-CN/2019/01/04/Use-mutt-postfix-to-send-mail-in-Linux/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/2019/01/04/Use-mutt-postfix-to-send-mail-in-Linux/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>折腾VPS上发邮件的原因是公司的WIFI从外网下载太慢，如果能够直接把文件下载到VPS上再用邮件塞到公司邮箱中下载，应该会快很多。我选择用Gmail来发送邮件，所以postfix的配置是Gmail的。</p>
+<h1>Postfix</h1>
+<p>Postfix的安装配置主要参考这篇文章：<a href="https://www.linode.com/docs/email/postfix/configure-postfix-to-send-mail-using-gmail-and-google-apps-on-debian-or-ubuntu/#test-postfix" target="_blank" rel="noopener">Configure Postfix to Send Mail Using Gmail and Google Apps on Debian or Ubuntu</a>。在印象笔记中保存一份<a href="https://app.yinxiang.com/shard/s4/nl/266203/6a433dcd-1366-4946-8165-c27b4eaa4342" target="_blank" rel="noopener">备份</a>。</p>
+<h2 id="安装和配置"><a class="header-anchor" href="#安装和配置">¶</a>安装和配置</h2>
+<ol>
+<li>
+<p>安装postfix和sasl</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install libsasl2-modules postfix</span><br></pre></td></tr></table></figure>
+<p>中间会弹出提示：<br>
+General type of mail configuration: Internet Site<br>
+System mail name: 默认的域名就可以了</p>
+</li>
+<li>
+<p>完成后会生成<code>/etc/postfix/main.cf</code>配置文件，后面需要修改。</p>
+</li>
+<li>
+<p>使用<a href="https://security.google.com/settings/security/apppasswords" target="_blank" rel="noopener">Generate an App password</a>来生成一个app password。App的名称就填Postfix。</p>
+</li>
+<li>
+<p>用户名和密码保存在<code>/etc/postfix/sasl/sasl_passwd</code>文件中，修改这个文件，添加这一行：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[smtp.gmail.com]:587 username@gmail.com:password</span><br></pre></td></tr></table></figure>
+<p>其中username替换成自己的用户名，password替换成刚才生成的app password。</p>
+</li>
+<li>
+<p>生成db文件，执行：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postmap /etc/postfix/sasl/sasl_passwd</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>设置文件权限：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown root:root /etc/postfix/sasl/sasl_passwd /etc/postfix/sasl/sasl_passwd.db</span><br><span class="line">sudo chmod 0600 /etc/postfix/sasl/sasl_passwd /etc/postfix/sasl/sasl_passwd.db</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>编辑<code>/etc/postfix/main.cf</code>，主要设置relayhost，其他不用改。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"># See /usr/share/postfix/main.cf.dist for a commented, more complete version</span><br><span class="line"></span><br><span class="line"># Debian specific:  Specifying a file name will cause the first</span><br><span class="line"># line of that file to be used as the name.  The Debian default</span><br><span class="line"># is /etc/mailname.</span><br><span class="line">#myorigin = /etc/mailname</span><br><span class="line"></span><br><span class="line">smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)</span><br><span class="line">biff = no</span><br><span class="line"></span><br><span class="line"># appending .domain is the MUA&apos;s job.</span><br><span class="line">append_dot_mydomain = no</span><br><span class="line"></span><br><span class="line"># Uncomment the next line to generate &quot;delayed mail&quot; warnings</span><br><span class="line">#delay_warning_time = 4h</span><br><span class="line"></span><br><span class="line">readme_directory = no</span><br><span class="line"></span><br><span class="line"># See http://www.postfix.org/COMPATIBILITY_README.html -- default to 2 on</span><br><span class="line"># fresh installs.</span><br><span class="line">compatibility_level = 2</span><br><span class="line"></span><br><span class="line"># TLS parameters</span><br><span class="line">smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem</span><br><span class="line">smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key</span><br><span class="line">smtpd_use_tls=yes</span><br><span class="line">smtpd_tls_session_cache_database = btree:$&#123;data_directory&#125;/smtpd_scache</span><br><span class="line">smtp_tls_session_cache_database = btree:$&#123;data_directory&#125;/smtp_scache</span><br><span class="line"></span><br><span class="line"># See /usr/share/doc/postfix/TLS_README.gz in the postfix-doc package for</span><br><span class="line"># information on enabling SSL in the smtp client.</span><br><span class="line"></span><br><span class="line">smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination</span><br><span class="line">myhostname = tonybuaa.tk</span><br><span class="line">alias_maps = hash:/etc/aliases</span><br><span class="line">alias_database = hash:/etc/aliases</span><br><span class="line">myorigin = /etc/mailname</span><br><span class="line">mydestination = $myhostname, tonybuaa.tk, localhost.tk, , localhost</span><br><span class="line">relayhost = [smtp.gmail.com]:587</span><br><span class="line">mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128</span><br><span class="line">mailbox_size_limit = 0</span><br><span class="line">recipient_delimiter = +</span><br><span class="line">inet_interfaces = all</span><br><span class="line">inet_protocols = all</span><br><span class="line"># Enable SASL authentication</span><br><span class="line">smtp_sasl_auth_enable = yes</span><br><span class="line"># Disallow methods that allow anonymous authentication</span><br><span class="line">smtp_sasl_security_options = noanonymous</span><br><span class="line"># Location of sasl_passwd</span><br><span class="line">smtp_sasl_password_maps = hash:/etc/postfix/sasl/sasl_passwd</span><br><span class="line"># Enable STARTTLS encryption</span><br><span class="line">smtp_tls_security_level = encrypt</span><br><span class="line"># Location of CA certificates</span><br><span class="line">smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt</span><br></pre></td></tr></table></figure>
+<p>保存退出。</p>
+</li>
+<li>
+<p>重启postfix。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart postfix</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1>Mutt</h1>
+<p>Mutt实际上就算是个邮件管理工具，它调用sendmail来发送邮件，调用vim等编辑器来编辑邮件等。postfix把sendmail替换成了自己的，mutt发送邮件的时候自然也就是通过postfix来将邮件发出去。详细说明可以参考这篇文章：<a href="http://www.ctex.org/documents/shredder/mutt_frame.html" target="_blank" rel="noopener">Mutt email 程序使用入门</a></p>
+<h2 id="安装和配置-v2"><a class="header-anchor" href="#安装和配置-v2">¶</a>安装和配置</h2>
+<ol>
+<li>
+<p>安装mutt</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install mutt</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>建立配置文件<br>
+首先需要建立一个.muttrc文件，然后修改文件权限</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch ~/.muttrc</span><br><span class="line">sudo chmod 600 ~/.muttrc</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>修改配置。可以配置的有很多，一般用默认值就可以了。具体可以参考手册：<a href="http://www.mutt.org/doc/manual/" target="_blank" rel="noopener">The Mutt E-Mail Client</a></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set realname=&quot;Tony&quot;</span><br><span class="line">set editor=&quot;vim&quot;</span><br><span class="line">set from=&quot;tonybuaa@gmail.com&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1>发送邮件</h1>
+<p>现在可以发个邮件试一下了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;test&quot; | mutt tonybuaa@gmail.com -s &quot;Subject&quot; -a shadowsocks-all.log.gz</span><br></pre></td></tr></table></figure>
+<p>这个邮件是自己发给自己的，其中：</p>
+<ul>
+<li><code>-s</code>是指定邮件主题</li>
+<li><code>-a</code>是添加附件</li>
+</ul>
+<p>邮件正文使用echo加管道符写进去。<br>
+如果对发送结果有疑问，可以查看系统日志：<code>tail -f /var/log/syslog</code>。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vps/" rel="tag"># vps</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/en/2018/12/30/Speed-Test/" rel="next" title="Speed Test">
+                <i class="fa fa-chevron-left"></i> Speed Test
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/zh-CN/2019/01/05/vmware-workstation-and-device-credential-guard-not-compatible/" rel="prev" title="解决“VMware Workstation 与 Device/Credential Guard 不兼容”">
+                解决“VMware Workstation 与 Device/Credential Guard 不兼容” <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7" alt="tonybuaa">
+            
+              <p class="site-author-name" itemprop="name">tonybuaa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/tonybuaa" title="GitHub &rarr; https://github.com/tonybuaa" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:tonybuaa@gmail.com" title="E-Mail &rarr; mailto:tonybuaa@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Postfix</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装和配置"><span class="nav-number">1.1.</span> <span class="nav-text">¶安装和配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Mutt</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装和配置-v2"><span class="nav-number">2.1.</span> <span class="nav-text">¶安装和配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">发送邮件</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tonybuaa</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+  	
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function (item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'ilYLzfmwPLUuwF5S86LMmh5g-gzGzoHsz',
+    appKey: 'csFQlOd7AHgnrHbkMo7DDamq',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+</script>
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+</body>
+</html>
