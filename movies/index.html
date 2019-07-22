@@ -32,35 +32,31 @@
 
 
 
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
 
 
 
 
 
 
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
 
 
 
 
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=6.7.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
 
 
 
@@ -73,11 +69,15 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
     fancybox: false,
+    mediumzoom: false,
     fastclick: false,
     lazyload: false,
+    pangu: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -86,15 +86,14 @@
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     }
   };
 </script>
-
-
-  
-
-
-
 
   <meta name="description" content="记录我看的电影         .hexo-douban-tabs {     margin-bottom: 15px;     margin-top: 15px; }  .hexo-douban-tab {     padding: 5px; }  .hexo-douban-active {     background: #657b83;     c">
 <meta property="og:type" content="website">
@@ -103,6 +102,9 @@
 <meta property="og:site_name" content="Log my life">
 <meta property="og:description" content="记录我看的电影         .hexo-douban-tabs {     margin-bottom: 15px;     margin-top: 15px; }  .hexo-douban-tab {     padding: 5px; }  .hexo-douban-active {     background: #657b83;     c">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tonybuaa.github.io/assets/douban-loading.gif">
+<meta property="og:image" content="https://tonybuaa.github.io/assets/douban-loading.gif">
+<meta property="og:image" content="https://tonybuaa.github.io/assets/douban-loading.gif">
 <meta property="og:image" content="https://tonybuaa.github.io/assets/douban-loading.gif">
 <meta property="og:image" content="https://tonybuaa.github.io/assets/douban-loading.gif">
 <meta property="og:image" content="https://tonybuaa.github.io/assets/douban-loading.gif">
@@ -676,7 +678,8 @@
 
 
 
-
+  
+  
   <link rel="canonical" href="https://tonybuaa.github.io/movies/">
 
 
@@ -687,6 +690,7 @@
   };
 </script>
 
+  
   <title>我的豆瓣电影 | Log my life</title>
   
 
@@ -695,10 +699,13 @@
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131195761-1"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-131195761-1');
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-131195761-1');
+    }
   </script>
 
 
@@ -785,7 +792,6 @@
 
     
     
-    
       
     
 
@@ -800,7 +806,6 @@
           
           <li class="menu-item menu-item-tags">
 
-    
     
     
       
@@ -819,7 +824,6 @@
 
     
     
-    
       
     
 
@@ -834,7 +838,6 @@
           
           <li class="menu-item menu-item-archives">
 
-    
     
     
       
@@ -853,7 +856,6 @@
 
     
     
-    
       
     
 
@@ -868,7 +870,6 @@
           
           <li class="menu-item menu-item-sitemap">
 
-    
     
     
       
@@ -889,10 +890,6 @@
 
   
 </nav>
-
-
-
-  
 
 
 
@@ -1048,36 +1045,24 @@
 <div class="hexo-douban-tabs">
     <a class="hexo-douban-tab" id="hexo-douban-tab1" href="javascript:;" rel="external">
         在看
-        (4)</a>
+        (3)</a>
     <a class="hexo-douban-tab" id="hexo-douban-tab2" href="javascript:;" rel="external">
         想看
-        (45)</a>
+        (40)</a>
     <a class="hexo-douban-tab" id="hexo-douban-tab3" href="javascript:;" rel="external">
         已看
-        (515)</a>
+        (524)</a>
 </div>
 <div>
     <div id="hexo-douban-item1">
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2321971908.jpg" referrerpolicy="no-referrer"></div>
-    <div class="hexo-douban-info">
-        <div class="hexo-douban-title">
-            <a target="_blank" href="https://movie.douban.com/subject/25862357/">权力的游戏 第六季 / Game of Thrones Season 6</a>
-        </div>
-        <div class="hexo-douban-meta">2016-04-24(美国) / 麦茜·威廉姆斯 / 艾米莉亚·克拉克 / 伊萨克·亨普斯特德-怀特 / 斯蒂芬·迪兰 / 彼特·丁拉基 / 苏菲·特纳 / 克里斯蒂安·奈恩 / 阿尔菲·艾伦 / 琳娜·海蒂 / 尼古拉·科斯特-瓦尔道 / 利亚姆·坎宁安 / 娜塔莉·多默尔 / 艾丹·吉伦 / 马克斯·冯·叙多夫 / 伊恩·麦柯肖恩 / 皮鲁·埃斯贝克 / 弗雷迪·史卓玛 / 雅各布·安德森 / 伊万·瑞恩 / 罗杰·阿什顿-格里菲斯 / 瑞贝卡·本森 / 大卫·布拉德利 / 约翰·C·布莱德利 / 阿特·帕金森 / 迈克尔·麦克埃尔哈顿 / 米契尔·哈思曼 / 凯莎·卡斯特-休伊斯 / 丹尼尔·波特曼 / 迪恩·查尔斯·查普曼 / 格温多兰·克里斯蒂 / 乔纳森·普雷斯 / 恩佐·科伦蒂 / 埃茜·戴维斯 / 利诺·法希奥利 / 詹姆斯·福克纳 / 杰罗姆·弗林 / 伊恩·格雷 / 朱利安·格洛弗 / 杰西卡·亨维克 / 康勒斯·希尔 / 克里斯托弗·海维尤 / 菲恩·琼斯 / 艾丽·肯德里克 / 罗莎贝尔·劳伦蒂·塞勒斯 / 安东·莱瑟 / 费伊·马赛 / 托比亚斯·门基斯 / 汉娜·穆雷 / 道比·欧帕瑞 / 黛安娜·里格 / 安德烈·克劳德 / 托比·塞巴斯蒂安 / 亚历山大·希迪格 / 尤金·西蒙 / 欧文·蒂尔 / 娜塔丽·特纳 / 卡里斯·范·侯登 / 鲁珀特·范西塔特 / 因迪拉·瓦玛 / 杰玛·韦兰 / 伊恩·怀特 / 汤姆·拉斯齐哈 / 基特·哈灵顿 / 哈弗波·朱利尔斯·比昂森 / 瑞奇·查普 / 本·克朗普顿 / 凯文·埃尔登 / 伊恩·盖尔德 / 迪恩·S·贾格尔 / 梅兰妮·利伯德 / 汉娜·沃丁厄姆 / 塞巴斯蒂安·克罗夫特 / 理查德·多默 / 约翰内斯·豪克尔·约翰内森 / 萨曼莎·斯毕洛 / 吉奥古·萨伍艾斯 / 卓库·莫度 / 尼尔·泰格·弗莉 / 娜塔莉·伊曼纽尔 / 艾迪·艾尔 / 罗伯特·阿拉马约 / 理查德·E·格兰特 / 贝拉·拉姆齐 / 卢克·罗伯茨 / 阿尼娅·布克斯坦 / 约瑟夫·马勒 / 汉娜·乔恩-卡门 / 安德鲁·麦克雷 / 克里夫·罗素 / 美国 / 英国 / www.hbo.com/game-of-thrones / 杰雷米·波德斯瓦 / 杰克·本德 / 马克·米罗 / 丹尼尔·沙克海姆 / 米格尔·萨普什尼克 / 权力的游戏 / 60分钟 / 权力的游戏 / 剧情 / 战争 / 奇幻 / 冒险 / 戴维·贝尼奥夫 David Benioff / D·B·威斯 D.B. Weiss / 乔治·马丁 George R.R. Martin / 英语</div>
-    </div>
-</div>
-
-
-        
-        <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2542213046.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2559974952.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/27623506/">小谢尔顿 第二季 / Young Sheldon Season 2</a>
         </div>
-        <div class="hexo-douban-meta">2018-09-24(美国) / 伊恩·阿米蒂奇 / 佐伊·派瑞 / 兰斯·巴伯 / 蒙塔纳·乔丹 / 拉根·雷沃德 / 安妮·波茨 / 吉姆·帕森斯 / 瑞安·方 / 怀亚特·麦克卢尔 / 华莱士·肖恩 / 麦肯娜·格瑞丝 / 安德利娅·安德斯 / 艾拉·安德森 / 乔什·库克 / 芭妮·里维拉 / 美国 / 贾弗尔·马哈穆德 / 霍华德·达奇 / 马克·森卓斯基 / 小谢尔顿 / 22分钟 / 小谢尔顿 / 喜剧 / 查克·罗瑞 Chuck Lorre / 史蒂文·莫拉 Steven Molaro / 塔拉·埃尔南德斯 Tara Hernandez / 英语</div>
+        <div class="hexo-douban-meta">2018-09-24(美国) / 伊恩·阿米蒂奇 / 佐伊·派瑞 / 兰斯·巴伯 / 蒙塔纳·乔丹 / 拉根·雷沃德 / 安妮·波茨 / 吉姆·帕森斯 / 瑞安·方 / 怀亚特·麦克卢尔 / 华莱士·肖恩 / 麦肯娜·格瑞丝 / 安德利娅·安德斯 / 艾拉·安德森 / 乔什·库克 / 芭妮·里维拉 / 伊莎贝尔·梅 / 美国 / 贾弗尔·马哈穆德 / 霍华德·达奇 / 马克·森卓斯基 / 小谢尔顿 / 22分钟 / 小谢尔顿 / 喜剧 / 查克·罗瑞 Chuck Lorre / 史蒂文·莫拉 Steven Molaro / 塔拉·埃尔南德斯 Tara Hernandez / 英语</div>
     </div>
 </div>
 
@@ -1101,7 +1086,7 @@
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/10509888/">Running Man / 런닝맨</a>
         </div>
-        <div class="hexo-douban-meta">2010-07-11(韩国) / 刘在锡 / 河东勋 / 李光洙 / 金钟国 / 池石镇 / 姜熙建 / 宋智孝 / 金民钟 / 李艺真 / 安喜延 / 拉莉莎·马诺芭 / 金珍妮 / 率滨 / 朴彩英 / 刘些宁 / 胡玄珠 / 藤田小百合 / 金智秀 / 金宝城 / 权光珍 / 车勋 / 金娜英 / 方敏雅 / 张睿恩 / 金栽经 / 宋仲基 / 千成文 / 梁世灿 / 韩孝周 / 朴宝英 / 金相庆 / 金珉奎 / 朴草娥 / 金志妍 / 李宣美 / 具滋哲 / 韩国 / runningman.sbs.co.kr/ / 90分钟 / Running Man / 喜剧 / 运动 / 真人秀 / 家庭 / 韩语</div>
+        <div class="hexo-douban-meta">2010-07-11(韩国) / 刘在锡 / 河东勋 / 李光洙 / 金钟国 / 池石镇 / 姜熙建 / 宋智孝 / 韩孝周 / 宋仲基 / 朴宝英 / 金相庆 / 金民钟 / 安喜延 / 李宣美 / 金珍妮 / 方敏雅 / 金栽经 / 拉莉莎·马诺芭 / 金智秀 / 朴草娥 / 朴彩英 / 率滨 / 车勋 / 金志妍 / 胡玄珠 / 刘些宁 / 金珉奎 / 金娜英 / 李艺真 / 张睿恩 / 金宝城 / 千成文 / 梁世灿 / 藤田小百合 / 权光珍 / 具滋哲 / 倞利 / 韩国 / runningman.sbs.co.kr/ / 90分钟 / Running Man / 喜剧 / 运动 / 真人秀 / 家庭 / 韩语</div>
     </div>
 </div>
 
@@ -1118,12 +1103,36 @@
     <div id="hexo-douban-item2">
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2548467439.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2198811825.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
-            <a target="_blank" href="https://movie.douban.com/subject/30143333/">我的一级兄弟 / 나의 특별한 형제</a>
+            <a target="_blank" href="https://movie.douban.com/subject/1858802/">黑皮书 / Zwartboek</a>
         </div>
-        <div class="hexo-douban-meta">2019-05-01(韩国) / 申河均 / 李光洙 / 李絮 / 朴哲民 / 权海虓 / 吉海妍 / 金重基 / 崔光一 / 禹志贤 / So-min Yang  / 韩星 / 金旻錫 / 韩国 / 陆相孝 / 114分钟 / 我的一级兄弟 / 喜剧 / 陆相孝 Sang-hyo Yook / 韩语</div>
+        <div class="hexo-douban-meta">2006-09-01(威尼斯电影节) / 2006-09-14(荷兰) / 2009-02-03(中国大陆) / 卡里斯·范·侯登 / 塞巴斯蒂安·科赫 / 汤姆·霍夫曼 / 哈里纳·雷金 / 瓦尔德马·科布斯 / 德雷克·德·林特 / 克里斯蒂安·贝克尔 / 多尔夫·德弗里斯 / 彼得·勃洛克 / 米契尔·哈思曼 / 弗兰克·拉默斯 / 马提亚斯·修奈尔 / 约翰尼·德·摩尔 / Nolan Hemmings / 加里克·哈根 / 提奥·马森 / 吉斯·纳贝 / 荷兰 / 德国 / 英国 / 比利时 / 保罗·范霍文 / 145 分钟 / 黑皮书 / 剧情 / 惊悚 / 战争 / Gerard Soeteman / 保罗·范霍文 Paul Verhoeven / 荷兰语 / 英语 / 德语 / 希伯来语</div>
+    </div>
+</div>
+
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1172845476.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/4832288/">奇迹 / 奇跡</a>
+        </div>
+        <div class="hexo-douban-meta">2011-06-11(日本) / 前田航基  / 前田旺志郎  / 大塚宁宁 / 小田切让 / 夏川结衣 / 阿部宽 / 长泽雅美 / 原田芳雄 / 树木希林 / 桥爪功 / 桥本环奈 / 林凌雅 / 中村友理 / 内田伽罗 / 平祐奈 / 镰田小惠子 / 田山凉成 / 日本 / kiseki.gaga.ne.jp / 是枝裕和 / 128分钟 / 奇迹 / 剧情 / 家庭 / 是枝裕和 Hirokazu Koreeda / 日语</div>
+    </div>
+</div>
+
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2560269362.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/34418203/">爱，死亡和机器人 第二季 / Love, Death &amp; Robots Season 2</a>
+        </div>
+        <div class="hexo-douban-meta">2020-03(美国) / 美国 / 爱，死亡和机器人 / 爱，死亡和机器人 / 喜剧 / 科幻 / 动画 / 奇幻 / 恐怖 / 英语</div>
     </div>
 </div>
 
@@ -1135,14 +1144,14 @@
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/26909790/">疾速备战 / John Wick: Chapter 3 - Parabellum</a>
         </div>
-        <div class="hexo-douban-meta">2019-05-17(美国) / 基努·里维斯 / 哈莉·贝瑞 / 劳伦斯·菲什伯恩 / 安杰丽卡·休斯顿 / 伊恩·麦柯肖恩 / 真田广之 / 马克·达卡斯考斯 / 艾莎·凯特·狄龙 / 兰斯·莱迪克 / 萨伊德·塔格马奥 / 杰罗姆·弗林 / 杰森·曼兹沃克斯 / 托拜厄斯·西格尔 / 博班·马里亚诺维奇 / 罗宾·泰勒 / 罗比·德拉费勒 / 费斯·洛根 / 雅彦·鲁伊安 / 兰德尔·杜克·金 / 袁之正 / 陈虎 / 安东尼·帕迪利亚 / 斯特凡尼娅·马卡洛娃 / 西尔维奥·西马克 / 马米·科西科 / 罗曼·米蒂齐扬 / 塞塞普·阿里夫·拉赫曼 / 安妮·比萨比亚 / 约翰·盖蒂尔 / 约翰·雷吉扎莫 / 美国 / 查德·斯塔赫斯基 / 130分钟 / 疾速备战 / 动作 / 犯罪 / 惊悚 / 德里克·科尔斯塔 Derek Kolstad / 英语 / 俄语 / 日语 / 意大利语</div>
+        <div class="hexo-douban-meta">2019-05-17(美国) / 基努·里维斯 / 哈莉·贝瑞 / 劳伦斯·菲什伯恩 / 安杰丽卡·休斯顿 / 伊恩·麦柯肖恩 / 马克·达卡斯考斯 / 艾莎·凯特·狄龙 / 兰斯·莱迪克 / 萨伊德·塔格马奥 / 杰罗姆·弗林 / 杰森·曼兹沃克斯 / 托拜厄斯·西格尔 / 博班·马里亚诺维奇 / 罗宾·泰勒 / 罗比·德拉费勒 / 费斯·洛根 / 雅彦·鲁伊安 / 兰德尔·杜克·金 / 袁之正 / 陈虎 / 安东尼·帕迪利亚 / 斯特凡尼娅·马卡洛娃 / 西尔维奥·西马克 / 马米·科西科 / 罗曼·米蒂齐扬 / 塞塞普·阿里夫·拉赫曼 / 安妮·比萨比亚 / 约翰·盖蒂尔 / 约翰·雷吉扎莫 / 美国 / 查德·斯塔赫斯基 / 131分钟 / 疾速备战 / 动作 / 犯罪 / 惊悚 / 德里克·科尔斯塔 Derek Kolstad / 谢伊·哈滕  Shay Hatten / 克里斯·柯林斯 Chris Collins / 马克·艾布拉姆斯 Marc Abrams / 英语 / 俄语 / 日语 / 意大利语</div>
     </div>
 </div>
 
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2546658528.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2560586388.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/30390701/">阿波罗11号 / Apollo 11</a>
@@ -1183,43 +1192,7 @@
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/27087724/">好莱坞往事 / Once Upon a Time in Hollywood</a>
         </div>
-        <div class="hexo-douban-meta">2019-05-21(戛纳电影节) / 2019-07-26(美国) / 莱昂纳多·迪卡普里奥 / 布拉德·皮特 / 玛格特·罗比 / 达科塔·范宁 / 戴米恩·路易斯 / 埃米尔·赫斯基 / 奥斯汀·巴特勒 / 拉莫·威利斯 / 麦克·毛 / 达蒙·海瑞曼 / 阿尔·帕西诺 / 詹姆斯·麦斯登 / 库尔特·拉塞尔 / 玛雅·霍克 / 莉娜·邓纳姆 / 卢克·贝里 / 斯科特·麦克纳里 / 蒂姆·罗斯 / 布鲁斯·邓恩 / 小克利夫顿·克林斯 / 迈克尔·马德森 / 佐伊·贝尔 / 尼古拉斯·哈蒙德 / 蒂莫西·奥利芬特 / 茱莉亚·巴特斯 / 斯宾塞·加雷特 / 马丁·科夫 / 詹姆斯·瑞马尔 / 布伦达·瓦卡罗 / 妮可·加利西亚 / 克雷格·斯塔克 / 马尔科·罗德里格斯 / 拉蒙·弗兰克 / 洛伦扎·伊佐 / 丹尼·斯特朗 / 西德妮·斯维尼 / 维多利亚·佩德雷蒂 / 拉法尔·扎维鲁查 / 朱丽叶·吉达 / 莫里斯·孔特 / 布里安娜·温 / 丹妮拉·皮克 / 美国 / 昆汀·塔伦蒂诺 / 165分钟 / 161分钟(戛纳电影节) / 好莱坞往事 / 剧情 / 传记 / 犯罪 / 昆汀·塔伦蒂诺 Quentin Tarantino / 英语</div>
-    </div>
-</div>
-
-
-        
-        <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2462245619.jpg" referrerpolicy="no-referrer"></div>
-    <div class="hexo-douban-info">
-        <div class="hexo-douban-title">
-            <a target="_blank" href="https://movie.douban.com/subject/26235354/">权力的游戏 第七季 / Game of Thrones Season 7</a>
-        </div>
-        <div class="hexo-douban-meta">2017-07-16(美国) / 艾米莉亚·克拉克 / 基特·哈灵顿 / 彼特·丁拉基 / 苏菲·特纳 / 麦茜·威廉姆斯 / 琳娜·海蒂 / 伊萨克·亨普斯特德-怀特 / 尼古拉·科斯特-瓦尔道 / 约翰·C·布莱德利 / 阿尔菲·艾伦 / 皮鲁·埃斯贝克 / 吉姆·布劳德本特 / 格温多兰·克里斯蒂 / 利亚姆·坎宁安 / 娜塔莉·伊曼纽尔 / 杰罗姆·弗林 / 艾丹·吉伦 / 艾德·希兰 / 伊恩·格雷 / 康勒斯·希尔 / 克里斯托弗·海维尤 / 罗伊·麦克凯恩 / 汉娜·穆雷 / 卡里斯·范·侯登 / 因迪拉·瓦玛 / 杰玛·韦兰 / 汤姆·拉斯齐哈 / 贝拉·拉姆齐 / 黛安娜·里格 / 安东·莱瑟 / 雅各布·安德森 / 凯莎·卡斯特-休伊斯 / 罗莎贝尔·劳伦蒂·塞勒斯 / 杰西卡·亨维克 / 哈弗波·朱利尔斯·比昂森 / 蒂姆·麦克纳尼 / 詹姆斯·福克纳 / 鲁珀特·范西塔特 / 汤姆·霍珀 / 马克·加蒂斯 / 理查德·多默 / 托马斯·图尔格斯 / 丹尼尔·纳普勒斯 / 凯文·埃尔登 / 约瑟夫·奎恩 / 约瑟夫·戴浦西 / 美国 / www.hbo.com/game-of-thrones / 杰雷米·波德斯瓦 / 马克·米罗 / 马特·沙克曼 / 阿兰·泰勒 / 权力的游戏 / 60分钟 / 权力的游戏 / 剧情 / 奇幻 / 冒险 / 布莱恩·考格曼 Bryan Cogman / 戴维·贝尼奥夫 David Benioff / 戴夫·希尔 Dave Hill / D·B·威斯 D.B. Weiss / 乔治·马丁 George R.R. Martin / 英语</div>
-    </div>
-</div>
-
-
-        
-        <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2552503815.jpg" referrerpolicy="no-referrer"></div>
-    <div class="hexo-douban-info">
-        <div class="hexo-douban-title">
-            <a target="_blank" href="https://movie.douban.com/subject/26584183/">权力的游戏 第八季 / Game of Thrones Season 8</a>
-        </div>
-        <div class="hexo-douban-meta">2019-04-14(美国) / 艾米莉亚·克拉克 / 基特·哈灵顿 / 彼特·丁拉基 / 苏菲·特纳 / 麦茜·威廉姆斯 / 琳娜·海蒂 / 伊萨克·亨普斯特德-怀特 / 尼古拉·科斯特-瓦尔道 / 约翰·C·布莱德利 / 阿尔菲·艾伦 / 皮鲁·埃斯贝克 / 格温多兰·克里斯蒂 / 利亚姆·坎宁安 / 娜塔莉·伊曼纽尔 / 康勒斯·希尔 / 罗伊·麦克凯恩 / 杰罗姆·弗林 / 克里斯托弗·海维尤 / 约瑟夫·戴浦西 / 雅各布·安德森 / 伊恩·格雷 / 安东·莱瑟 / 理查德·多默 / 杰玛·韦兰 / 本·克朗普顿 / 哈弗波·朱利尔斯·比昂森 / 丹尼尔·波特曼 / 鲁珀特·范西塔特 / 贝拉·拉姆齐 / 汤姆·拉斯齐哈 / 费伊·马赛 / 利诺·法希奥利 / 卡里斯·范·侯登 / 弗拉基米尔·弗迪克 / 美国 / 米格尔·萨普什尼克 / 大卫·努特尔 / 戴维·贝尼奥夫 / D·B·威斯 / 权力的游戏 / 60分钟(E1-E2) / 80分钟(E3-E6) / 权力的游戏 / 剧情 / 奇幻 / 冒险 / 戴维·贝尼奥夫 David Benioff / D·B·威斯 D.B. Weiss / 乔治·马丁 George R.R. Martin / 戴夫·希尔 Dave Hill / 布莱恩·考格曼 Bryan Cogman / 英语</div>
-    </div>
-</div>
-
-
-        
-        <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2558701068.jpg" referrerpolicy="no-referrer"></div>
-    <div class="hexo-douban-info">
-        <div class="hexo-douban-title">
-            <a target="_blank" href="https://movie.douban.com/subject/19971676/">黑衣人：全球追缉 / Men in Black International</a>
-        </div>
-        <div class="hexo-douban-meta">2019-06-12(台湾) / 2019-06-14(美国) / 2019-06-14(中国大陆) / 克里斯·海姆斯沃斯 / 泰莎·汤普森 / 丽贝卡·弗格森 / 库梅尔·南贾尼 / 拉菲·斯波 / 艾玛·汤普森 / 连姆·尼森 / 戴维娜·西塔拉姆 / 纳西尔·贾玛 / 维克托里娅·菲斯 / 佩内洛普·卡普迪雅 / 斯蒂芬·怀特 / 安纳托·陶布曼 / 露丝·霍洛克斯 / 贝恩·科拉科 / 马西·哈里尔 / 哈廷·帕特尔 / 通恰伊·古奈什 / 艾德里安·阿尔瓦拉多 / 史蒂芬·萨姆森 / 曼迪娅·弗罗里 / 美国 / F·加里·格雷 / 115分钟 / 黑衣人：全球追缉 / 喜剧 / 动作 / 科幻 / 劳威尔·坎宁安  Lowell Cunningham / 马特·霍洛维 Matt Holloway / 阿特·马库姆 Art Marcum / 英语</div>
+        <div class="hexo-douban-meta">2019-05-21(戛纳电影节) / 2019-07-26(美国) / 莱昂纳多·迪卡普里奥 / 布拉德·皮特 / 玛格特·罗比 / 达科塔·范宁 / 戴米恩·路易斯 / 埃米尔·赫斯基 / 奥斯汀·巴特勒 / 拉莫·威利斯 / 麦克·毛 / 达蒙·海瑞曼 / 阿尔·帕西诺 / 詹姆斯·麦斯登 / 库尔特·拉塞尔 / 玛雅·霍克 / 莉娜·邓纳姆 / 卢克·贝里 / 斯科特·麦克纳里 / 蒂姆·罗斯 / 布鲁斯·邓恩 / 小克利夫顿·克林斯 / 迈克尔·马德森 / 佐伊·贝尔 / 尼古拉斯·哈蒙德 / 蒂莫西·奥利芬特 / 茱莉亚·巴特斯 / 斯宾塞·加雷特 / 马丁·科夫 / 詹姆斯·瑞马尔 / 布伦达·瓦卡罗 / 妮可·加利西亚 / 克雷格·斯塔克 / 马尔科·罗德里格斯 / 拉蒙·弗兰克 / 洛伦扎·伊佐 / 丹尼·斯特朗 / 西德妮·斯维尼 / 维多利亚·佩德雷蒂 / 拉法尔·扎维鲁查 / 朱丽叶·吉达 / 莫里斯·孔特 / 布里安娜·温 / 丹妮拉·皮克 / 美国 / 昆汀·塔伦蒂诺 / 165分钟 / 161分钟(戛纳电影节) / 162分钟(院线版) / 好莱坞往事 / 剧情 / 传记 / 犯罪 / 惊悚 / 昆汀·塔伦蒂诺 Quentin Tarantino / 英语</div>
     </div>
 </div>
 
@@ -1238,12 +1211,12 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2559139705.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2563336389.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
-            <a target="_blank" href="https://movie.douban.com/subject/30331432/">洛基 / Loki</a>
+            <a target="_blank" href="https://movie.douban.com/subject/30331432/">洛基 / LOKI</a>
         </div>
-        <div class="hexo-douban-meta">汤姆·希德勒斯顿 / 美国 / 洛基 / 洛基 / 科幻 / 奇幻 / 迈克尔·沃尔德伦 Michael Waldron / 英语</div>
+        <div class="hexo-douban-meta">2021(美国) / 汤姆·希德勒斯顿 / 美国 / 洛基 / 洛基 / 科幻 / 奇幻 / 迈克尔·沃尔德伦 Michael Waldron / 英语</div>
     </div>
 </div>
 
@@ -1313,9 +1286,9 @@
     <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2068458389.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
-            <a target="_blank" href="https://movie.douban.com/subject/3011317/">闪电侠 / Flashpoint</a>
+            <a target="_blank" href="https://movie.douban.com/subject/3011317/">闪电侠 / The Flash</a>
         </div>
-        <div class="hexo-douban-meta">埃兹拉·米勒 / 科雷西·克莱门斯 / 比利·克鲁德普 / 美国 / 约翰·弗朗西斯·戴利 / 乔纳森·M·戈尔茨坦 / 闪电侠 / 动作 / 科幻 / 奇幻 / 冒险 / 埃兹拉·米勒 Ezra Miller / 格兰特·莫里森 Grant Morrison / 卓比·哈罗德 Joby Harold / 哈里·兰珀特 Harry Lampert / 伽德纳·福克斯 Gardner Fox / 英语</div>
+        <div class="hexo-douban-meta">埃兹拉·米勒 / 美国 / 安德斯·穆斯切蒂 / 闪电侠 / 动作 / 科幻 / 奇幻 / 冒险 / 克里斯蒂娜·霍德森 Christina Hodson / 伽德纳·福克斯 Gardner Fox / 哈里·兰珀特 Harry Lampert / 英语</div>
     </div>
 </div>
 
@@ -1346,24 +1319,12 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2555886490.jpg" referrerpolicy="no-referrer"></div>
-    <div class="hexo-douban-info">
-        <div class="hexo-douban-title">
-            <a target="_blank" href="https://movie.douban.com/subject/26667010/">X战警：黑凤凰 / Dark Phoenix</a>
-        </div>
-        <div class="hexo-douban-meta">2019-06-06(中国大陆) / 2019-06-07(美国) / 苏菲·特纳 / 詹姆斯·麦卡沃伊 / 迈克尔·法斯宾德 / 尼古拉斯·霍尔特 / 泰伊·谢里丹 / 杰西卡·查斯坦 / 詹妮弗·劳伦斯 / 柯蒂·斯密特-麦菲 / 亚历山德拉·希普 / 埃文·彼得斯 / 丹尼尔·库德摩尔 / 奥托·艾森度 / 伊万·乔尼凯特 / 莎莫·芳塔娜 / 斯科特· 谢泼德 / 拉马尔·约翰逊 / 泰勒·艾略特·伯克 / 安德鲁·斯特林 / 朱利安·拜利 / 毛里齐奥·泰拉扎诺 / 乔什·麦克拉伦 / 格雷格·洛 / 塞巴斯蒂安·麦克莱恩 / 沙维尔·索特洛 / 凯伦·伊万尼 / 奥利维耶·拉玛舒 / 西蒙·阿兰 / 亚历山大·贝朗格 / 美国 / www.foxmovies.com/movies/dark-phoenix / 西蒙·金伯格 / 114分钟 / X战警：黑凤凰 / 动作 / 科幻 / 冒险 / 西蒙·金伯格 Simon Kinberg / 约翰·拜恩 John Byrne / 克里斯·克雷蒙 Chris Claremont / 戴夫·科克勒姆 Dave Cockrum / 杰克·科比 Jack Kirby / 斯坦·李 Stan Lee / 英语</div>
-    </div>
-</div>
-
-
-        
-        <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2550408907.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2563263830.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/25828589/">黑寡妇 / Black Widow</a>
         </div>
-        <div class="hexo-douban-meta">2020(美国) / 斯嘉丽·约翰逊 / 大卫·哈伯 / 蕾切尔·薇兹 / 弗洛伦斯·皮尤 / O·T·费本勒 / 美国 / 凯特·休特兰 / 黑寡妇 / 动作 / 科幻 / 冒险 / 内德·本森 Ned Benson / 唐·赫克 Don Heck / 唐·里科 Don Rico / 雅克·舍费尔 Jac Schaeffer / 斯坦·李 Stan Lee / 英语</div>
+        <div class="hexo-douban-meta">2020-05-01(美国) / 斯嘉丽·约翰逊 / 佛罗伦斯·珀 / 大卫·哈伯 / 蕾切尔·薇兹 / O·T·法格本 / 美国 / 凯特·绍特兰 / 黑寡妇 / 动作 / 科幻 / 冒险 / 内德·本森 Ned Benson / 唐·赫克 Don Heck / 唐·里科 Don Rico / 雅克·舍费尔 Jac Schaeffer / 斯坦·李 Stan Lee / 英语</div>
     </div>
 </div>
 
@@ -1387,19 +1348,7 @@
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/25862666/">极品老妈 第二季 / Mom Season 2</a>
         </div>
-        <div class="hexo-douban-meta">2014-10-30(美国) / 安娜·法瑞丝 / 艾莉森·珍妮 / 赛迪·卡尔瓦诺 / 凯文·波拉克 / 内森·科德里 / 马特·琼斯 / 弗伦奇·斯图尔特 / 米密·肯尼迪 / 斯宾塞·丹尼尔斯 / 布莱克·加列特·罗森索 / 约翰尼·科瓦内 / 詹姆斯·厄尔 / 约翰尼·克罗斯瑞 / 艾普尔·鲍白 / 杰米·普莱斯利 / 梅格·钱伯斯·斯蒂德尔 / 瑞切尔·杰梅因 / 美国 / www.cbs.com/shows/mom/ / 泰德·瓦斯 / 查克·罗瑞 / 极品老妈 / 30分钟 / 极品老妈 / 喜剧 / 查克·罗瑞 Chuck Lorre / Eddie Gorodetsky / Gemma Baker / 英语</div>
-    </div>
-</div>
-
-
-        
-        <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2544987866.jpg" referrerpolicy="no-referrer"></div>
-    <div class="hexo-douban-info">
-        <div class="hexo-douban-title">
-            <a target="_blank" href="https://movie.douban.com/subject/1652592/">阿丽塔：战斗天使 / Alita: Battle Angel</a>
-        </div>
-        <div class="hexo-douban-meta">2019-02-05(台湾) / 2019-02-14(美国) / 2019-02-22(中国大陆) / 罗莎·萨拉查 / 克里斯托弗·沃尔兹 / 基恩·约翰逊 / 艾德·斯克林 / 马赫沙拉·阿里 / 詹妮弗·康纳利 / 杰基·厄尔·哈利 / 拉娜·康多 / 小豪尔赫·兰登伯格 / 艾莎·冈萨雷斯 / 卡斯帕·凡·迪恩 / 米歇尔·罗德里格兹 / 爱德华·诺顿 / 杰夫·法赫 / 山姆·麦地那 / 德里克·梅耶斯 / 艾丽·拉蒙特 / 豪尔赫·A·希门尼斯 / 马克·扎罗 / 比利·布莱尔 / 伦纳德·吴 / 特里斯坦·里格斯 / 迈克尔·洛夫·托利弗 / 金 / 达塞尔·丹妮尔 / 马克·A·怀特 / 杰·科特尼 / 美国 / 加拿大 / 阿根廷 / www.foxmovies.com/movies/alita-battle-angel / 罗伯特·罗德里格兹 / 122分钟 / 阿丽塔：战斗天使 / 动作 / 科幻 / 冒险 / 詹姆斯·卡梅隆 James Cameron / 莱塔·卡罗格里迪斯 Laeta Kalogridis / 木城幸人 Yukito Kishiro / 英语 / 西班牙语</div>
+        <div class="hexo-douban-meta">2014-10-30(美国) / 安娜·法瑞丝 / 艾莉森·珍妮 / 赛迪·卡尔瓦诺 / 凯文·波拉克 / 内森·科德里 / 马特·琼斯 / 弗伦奇·斯图尔特 / 米密·肯尼迪 / 斯宾塞·丹尼尔斯 / 布莱克·加列特·罗森索 / 约翰尼·科瓦内 / 詹姆斯·厄尔 / 约翰尼·克罗斯瑞 / 艾普尔·鲍白 / 杰米·普莱斯利 / 梅格·钱伯斯·斯蒂德尔 / 瑞切尔·杰梅因 / 维罗娜·布鲁 / 美国 / www.cbs.com/shows/mom/ / 泰德·瓦斯 / 查克·罗瑞 / 极品老妈 / 30分钟 / 极品老妈 / 喜剧 / 查克·罗瑞 Chuck Lorre / Eddie Gorodetsky / Gemma Baker / 英语</div>
     </div>
 </div>
 
@@ -1423,7 +1372,7 @@
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/30371824/">后街女孩 / Back Street Girls ゴクドルズ</a>
         </div>
-        <div class="hexo-douban-meta">2019-02-08(日本) / 白洲迅 / 柾木玲弥 / 花泽将人 / 冈本夏美 / 松田流花 / 坂之上茜 / 大杉涟 / 浅川梨奈 / 秋山莉奈 / 高嶋香帆 / 小泽仁志 / 樱田通 / 日本 / 原桂之介 / 88分钟 / 后街女孩 / 剧情 / Jasmine Gyuh / 日语</div>
+        <div class="hexo-douban-meta">2019-02-08(日本) / 白洲迅 / 柾木玲弥 / 花泽将人 / 冈本夏美 / 松田流花 / 坂之上茜 / 大杉涟 / 菅谷哲也 / 浅川梨奈 / 秋山莉奈 / 高嶋香帆 / 小泽仁志 / 樱田通 / 日本 / 原桂之介 / 88分钟 / 后街女孩 / 剧情 / Jasmine Gyuh / 伊藤秀裕 Hidehiro Ito / 增本庄一郎 Shôichirô Masumoto / 日语</div>
     </div>
 </div>
 
@@ -1526,36 +1475,12 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507486724.jpg" referrerpolicy="no-referrer"></div>
-    <div class="hexo-douban-info">
-        <div class="hexo-douban-title">
-            <a target="_blank" href="https://movie.douban.com/subject/10437779/">新世界 / 신세계</a>
-        </div>
-        <div class="hexo-douban-meta">2013-02-21(韩国) / 李政宰 / 崔岷植 / 黄政民 / 宋智孝 / 朴圣雄 / 金秉玉 / 金弘波 / 郑基燮 / 朴智勋 / 柳圣贤 / Sung-il Shin / 郑煐禥 / 朱进模 / 马东锡 / 李璟荣 / 张光 / 崔日华 / 郑载宪 / 韩国 / sinsegae2013.co.kr / 朴勋政 / 134分钟 / 新世界 / 剧情 / 犯罪 / 朴勋政 Hoon-jung Park / 韩语 / 汉语普通话</div>
-    </div>
-</div>
-
-
-        
-        <div class="hexo-douban-item">
     <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1075591188.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/5908478/">我爱你 / 그대를 사랑합니다</a>
         </div>
         <div class="hexo-douban-meta">2011-02-17(韩国) / 宋在浩 / 李顺载 / 尹秀晶 / 金秀美 / 宋智孝 / 吴达洙 / 禹尚全 / Jeong Eun-kyeong  / 吉海妍 / 柳淳哲 / 赵在允 / 罗美兰 / 李凤莲 / 金光奎 / 金香起 / 金凡振  / 韩国 / www.iloveyou2011.co.kr/ / 秋昌旼 / 孙昌敏 / 118分钟 / 我爱你 / 剧情 / 爱情 / 姜草 / 秋昌民 Chang-min Choo / 韩语</div>
-    </div>
-</div>
-
-
-        
-        <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2558293106.jpg" referrerpolicy="no-referrer"></div>
-    <div class="hexo-douban-info">
-        <div class="hexo-douban-title">
-            <a target="_blank" href="https://movie.douban.com/subject/26931786/">蜘蛛侠：英雄远征 / Spider-Man: Far From Home</a>
-        </div>
-        <div class="hexo-douban-meta">2019-06-28(中国大陆) / 2019-07-02(美国) / 汤姆·赫兰德 / 赞达亚 / 玛丽莎·托梅 / 杰克·吉伦哈尔 / 寇碧·史莫德斯 / 塞缪尔·杰克逊 / 乔恩·费儒 / 安格瑞·赖斯 / 马丁·斯塔尔 / 瑞米·海依 / 纽曼·阿卡 / 托尼·雷沃罗利 / 雅各布·巴特朗 / J·B·斯穆夫 / 赫米基·马德拉 / 戴维娜·西塔拉姆 / 约瑟夫·朗 / 露丝·霍洛克斯 / 哈廷·帕特尔 / 杰罗恩·凡·康宁斯伯格 / 列尼斯·德洛桑托斯 / 查利·蕾娅·埃斯奎尔 / 费斯·洛根 / 迈克尔·基顿 / 美国 / 乔·沃茨 / 135分钟 / 蜘蛛侠：英雄远征 / 动作 / 科幻 / 冒险 / 克里斯·麦克纳 Chris McKenna / 埃里克·萨默斯 Erik Sommers / 史蒂夫·迪特寇 Steve Ditko / 斯坦·李 Stan Lee / 英语</div>
     </div>
 </div>
 
@@ -1579,7 +1504,7 @@
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/26848167/">爱宠大机密2 / The Secret Life of Pets 2</a>
         </div>
-        <div class="hexo-douban-meta">2019-06-07(美国) / 2019-07-05(中国大陆) / 帕顿·奥斯瓦尔特 / 凯文·哈特 / 哈里森·福特 / 艾瑞克·斯通斯崔特 / 珍妮·斯蕾特 / 蒂凡尼·哈迪斯 / 蕾克·贝尔 / 达纳·卡维 / 鲍比·莫尼汉 / 汉尼拔·布勒斯 / 克里斯·雷纳德 / 艾丽·坎伯尔 / 皮特·霍尔姆斯 / 尼克·克罗尔 / 肖恩·吉布朗尼 / 梅雷迪斯·萨拉格尔 / 迈克尔·贝亚蒂 / 大卫·阿克德 / 斯科特·摩西尔 / 杰米·卡米尔 / 拉瑞恩·纽曼 / 布莱恩·T·德莱尼 / 杰西卡·迪西可 / 桑德拉·艾切维里亚 / 加斯·詹宁斯 / 塔拉·斯特朗 / 弗雷德·塔特西奥 / 约翰·卡西尔 / 斯科特·门维尔 / 马修·伍德 / 陈佩斯 / 冯绍峰 / 郭采洁 / 马丽 / 冯小刚 / 美国 / 克里斯·雷纳德 / 103分钟 / 爱宠大机密2 / 喜剧 / 动画 / 冒险 / 布莱恩·林奇 Brian Lynch / 英语</div>
+        <div class="hexo-douban-meta">2019-06-07(美国) / 2019-07-05(中国大陆) / 帕顿·奥斯瓦尔特 / 凯文·哈特 / 哈里森·福特 / 艾瑞克·斯通斯崔特 / 珍妮·斯蕾特 / 蒂凡尼·哈迪斯 / 蕾克·贝尔 / 达纳·卡维 / 鲍比·莫尼汉 / 汉尼拔·布勒斯 / 克里斯·雷纳德 / 艾丽·坎伯尔 / 皮特·霍尔姆斯 / 尼克·克罗尔 / 肖恩·吉布朗尼 / 梅雷迪斯·萨拉格尔 / 迈克尔·贝亚蒂 / 大卫·阿克德 / 斯科特·摩西尔 / 杰米·卡米尔 / 拉瑞恩·纽曼 / 布莱恩·T·德莱尼 / 杰西卡·迪西可 / 桑德拉·艾切维里亚 / 加斯·詹宁斯 / 塔拉·斯特朗 / 弗雷德·塔特西奥 / 约翰·卡西尔 / 斯科特·门维尔 / 马修·伍德 / 陈佩斯 / 冯绍峰 / 郭采洁 / 马丽 / 冯小刚 / 美国 / www.thesecretlifeofpets.com / 克里斯·雷纳德 / 86分钟 / 爱宠大机密2 / 喜剧 / 动画 / 冒险 / 布莱恩·林奇 Brian Lynch / 英语</div>
     </div>
 </div>
 
@@ -1610,12 +1535,12 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2548021046.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2559230872.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/25887288/">冰雪奇缘2 / Frozen II</a>
         </div>
-        <div class="hexo-douban-meta">2019-11-22(美国) / 伊迪娜·门泽尔 / 克里斯汀·贝尔 / 乔纳森·格罗夫 / 埃文·蕾切尔·伍德 / 乔什·加德 / 斯特林·K·布朗 / 美国 / 克里斯·巴克 / 珍妮弗·李 / 冰雪奇缘2 / 喜剧 / 动画 / 冒险 / 珍妮弗·李 Jennifer Lee / 艾莉森·施罗德 Allison Schroeder / 英语</div>
+        <div class="hexo-douban-meta">2019-11-22(美国) / 伊迪娜·门泽尔 / 克里斯汀·贝尔 / 乔纳森·格罗夫 / 埃文·蕾切尔·伍德 / 乔什·加德 / 斯特林·K·布朗 / 圣蒂诺·方塔纳 / 美国 / 克里斯·巴克 / 珍妮弗·李 / 冰雪奇缘2 / 喜剧 / 动画 / 冒险 / 珍妮弗·李 Jennifer Lee / 艾莉森·施罗德 Allison Schroeder / 英语</div>
     </div>
 </div>
 
@@ -1646,7 +1571,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2187896711.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2187896734.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/25807345/">彗星来的那一夜 / Coherence</a>
@@ -1666,6 +1591,123 @@
 </div>
     </div>
     <div id="hexo-douban-item3">
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507486724.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/10437779/">新世界 / 신세계</a>
+        </div>
+        <div class="hexo-douban-meta">2019-07-15 /  / ★★★★★ 力荐 </div>
+        <div class="hexo-douban-comments"> </div>
+    </div>
+</div>
+
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2548467439.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/30143333/">我的一级兄弟 / 나의 특별한 형제</a>
+        </div>
+        <div class="hexo-douban-meta">2019-07-12 /  / ★★★★★ 力荐 </div>
+        <div class="hexo-douban-comments"> </div>
+    </div>
+</div>
+
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2555084871.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/30211551/">恶人传 / 악인전</a>
+        </div>
+        <div class="hexo-douban-meta">2019-07-10 /  / ★★★★☆ 推荐 </div>
+        <div class="hexo-douban-comments"> </div>
+    </div>
+</div>
+
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2544987866.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/1652592/">阿丽塔：战斗天使 / Alita: Battle Angel</a>
+        </div>
+        <div class="hexo-douban-meta">2019-07-10 /  / ★★★★★ 力荐 </div>
+        <div class="hexo-douban-comments"> </div>
+    </div>
+</div>
+
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2552503815.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/26584183/">权力的游戏 第八季 / Game of Thrones Season 8</a>
+        </div>
+        <div class="hexo-douban-meta">2019-07-04 /  / ★★★★☆ 推荐 </div>
+        <div class="hexo-douban-comments"> </div>
+    </div>
+</div>
+
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2462245619.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/26235354/">权力的游戏 第七季 / Game of Thrones Season 7</a>
+        </div>
+        <div class="hexo-douban-meta">2019-06-30 /  / ★★★★★ 力荐 </div>
+        <div class="hexo-douban-comments"> </div>
+    </div>
+</div>
+
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2558293106.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/26931786/">蜘蛛侠：英雄远征 / Spider-Man: Far from Home</a>
+        </div>
+        <div class="hexo-douban-meta">2019-06-28 /  / ★★★★★ 力荐 </div>
+        <div class="hexo-douban-comments"> </div>
+    </div>
+</div>
+
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2321971908.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/25862357/">权力的游戏 第六季 / Game of Thrones Season 6</a>
+        </div>
+        <div class="hexo-douban-meta">2019-06-22 /  / ★★★★★ 力荐 </div>
+        <div class="hexo-douban-comments"> </div>
+    </div>
+</div>
+
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2558701068.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/19971676/">黑衣人：全球追缉 / Men in Black International</a>
+        </div>
+        <div class="hexo-douban-meta">2019-06-16 /  / ★★★☆☆ 还行 </div>
+        <div class="hexo-douban-comments"> </div>
+    </div>
+</div>
+
+
         
         <div class="hexo-douban-item">
     <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2230256732.jpg" referrerpolicy="no-referrer"></div>
@@ -1905,7 +1947,7 @@
     <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2548248276.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
-            <a target="_blank" href="https://movie.douban.com/subject/30424374/">爱，死亡和机器人 / Love, Death &amp; Robots</a>
+            <a target="_blank" href="https://movie.douban.com/subject/30424374/">爱，死亡和机器人 第一季 / Love, Death &amp; Robots Season 1</a>
         </div>
         <div class="hexo-douban-meta">2019-03-31 /  / ★★★★★ 力荐 </div>
         <div class="hexo-douban-comments"> </div>
@@ -1967,7 +2009,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2548870813.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2546360443.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/26213252/">惊奇队长 / Captain Marvel</a>
@@ -2318,7 +2360,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1334122023.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2558313856.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/3882715/">武林外传</a>
@@ -2370,7 +2412,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2287032449.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2559504518.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/25845400/">生活大爆炸 第九季 / The Big Bang Theory Season 9</a>
@@ -2565,7 +2607,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2534573970.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2533785840.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/30269039/">内在美 / 뷰티인사이드</a>
@@ -2669,7 +2711,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p732941361.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p847648197.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1293838/">星球大战 / Star Wars</a>
@@ -2929,7 +2971,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p459054512.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p443461390.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1304141/">黑客帝国2：重装上阵 / The Matrix Reloaded</a>
@@ -3189,7 +3231,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1177354736.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2563027293.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1300498/">百变星君 / 百變星君</a>
@@ -5919,7 +5961,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p725871004.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p725871968.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1432146/">钢铁侠 / Iron Man</a>
@@ -6205,7 +6247,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1280323646.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2561721372.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1299398/">大话西游之月光宝盒 / 西遊記第壹佰零壹回之月光寶盒</a>
@@ -6478,7 +6520,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p803896904.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2447590313.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1292215/">天使爱美丽 / Le fabuleux destin d&#39;Amélie Poulain</a>
@@ -6647,7 +6689,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2199847640.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2201798471.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/25845393/">生活大爆炸 第八季 / The Big Bang Theory Season 8</a>
@@ -6764,7 +6806,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p510876377.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2559011361.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1292720/">阿甘正传 / Forrest Gump</a>
@@ -6777,7 +6819,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1910813120.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1488213971.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1291546/">霸王别姬</a>
@@ -6790,7 +6832,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p492406163.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2543441827.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1295124/">辛德勒的名单 / Schindler&#39;s List</a>
@@ -7466,7 +7508,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p453719066.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p792282381.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1419936/">战争之王 / Lord of War</a>
@@ -7843,7 +7885,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p497010372.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2559581324.jpg" referrerpolicy="no-referrer"></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/3443389/">海洋 / Océans</a>
@@ -8519,7 +8561,6 @@ for (var i = 0; i < firstpages.length; i++) {
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
@@ -8528,123 +8569,131 @@ for (var i = 0; i < firstpages.length; i++) {
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
+
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7" alt="tonybuaa">
-            
-              <p class="site-author-name" itemprop="name">tonybuaa</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
+  
+    <img class="site-author-image" itemprop="image" src="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7" alt="tonybuaa">
+  
+  <p class="site-author-name" itemprop="name">tonybuaa</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://github.com/tonybuaa" title="GitHub &rarr; https://github.com/tonybuaa" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="mailto:tonybuaa@gmail.com" title="E-Mail &rarr; mailto:tonybuaa@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+    
+  </div>
+
+
+
+
+
+
 
           
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">11</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                    <span class="site-state-item-count">1</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">15</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
           
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/tonybuaa" title="GitHub &rarr; https://github.com/tonybuaa" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="mailto:tonybuaa@gmail.com" title="E-Mail &rarr; mailto:tonybuaa@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
         </div>
       </div>
 
@@ -8654,6 +8703,7 @@ for (var i = 0; i < firstpages.length; i++) {
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
         
@@ -8682,12 +8732,13 @@ for (var i = 0; i < firstpages.length; i++) {
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.2.0</div>
 
 
 
 
         
+
 
 
 
@@ -8711,6 +8762,7 @@ for (var i = 0; i < firstpages.length; i++) {
     
 
     
+
   </div>
 
   
@@ -8738,6 +8790,9 @@ for (var i = 0; i < firstpages.length; i++) {
 
 
 
+  
+  
+
 
 
 
@@ -8747,7 +8802,7 @@ for (var i = 0; i < firstpages.length; i++) {
 
 
   
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
 
   
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
@@ -8756,45 +8811,32 @@ for (var i = 0; i < firstpages.length; i++) {
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
-  
 
 
-  <script src="/js/src/utils.js?v=6.7.0"></script>
+  <script src="/js/utils.js?v=7.2.0"></script>
 
-  <script src="/js/src/motion.js?v=6.7.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/affix.js?v=6.7.0"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+  <script src="/js/motion.js?v=7.2.0"></script>
 
 
 
   
-  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
-<script src="/js/src/post-details.js?v=6.7.0"></script>
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
 
 
 
   
-
-
-  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
-
-
-
-  
-
-  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
 
 
 
-
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
   
 
@@ -8802,99 +8844,82 @@ for (var i = 0; i < firstpages.length; i++) {
 
   
 
-  
 
   
 
-  
+
+
+
+
+
+
 
   
 
-  
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 
-  
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'ilYLzfmwPLUuwF5S86LMmh5g-gzGzoHsz',
+    appKey: 'csFQlOd7AHgnrHbkMo7DDamq',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
 
-  
 
-  
 
-  
-  <style>
-    .copy-btn {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 20px;
-      color: #333;
-      white-space: nowrap;
-      vertical-align: middle;
-      cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid #d5d5d5;
-      border-radius: 3px;
-      user-select: none;
-      outline: 0;
-    }
 
-    .highlight-wrap .copy-btn {
-      transition: opacity .3s ease-in-out;
-      opacity: 0;
-      padding: 2px 6px;
-      position: absolute;
-      right: 4px;
-      top: 8px;
-    }
 
-    .highlight-wrap:hover .copy-btn,
-    .highlight-wrap .copy-btn:focus {
-      opacity: 1
-    }
 
-    .highlight-wrap {
-      position: relative;
-    }
-  </style>
-  <script>
-    $('.highlight').each(function (i, e) {
-      var $wrap = $('<div>').addClass('highlight-wrap');
-      $(e).after($wrap);
-      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
-        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
-          return $(e).text();
-        }).toArray().join('\n');
-        var ta = document.createElement('textarea');
-        var range = document.createRange(); //For Chrome
-        var sel = window.getSelection(); //For Chrome
-        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-        ta.style.top = yPosition + 'px'; //Prevent page scroll
-        ta.style.position = 'absolute';
-        ta.style.opacity = '0';
-        ta.value = code;
-        ta.textContent = code; //For FireFox
-        ta.contentEditable = true;
-        ta.readOnly = false;
-        document.body.appendChild(ta);
-        range.selectNode(ta);
-        sel.removeAllRanges();
-        sel.addRange(range);
-        ta.setSelectionRange(0, code.length);
-        var result = document.execCommand('copy');
-        
-          if (result) $(this).text('复制成功');
-          else $(this).text('复制失败');
-        
-        ta.blur(); //For iOS
-        $(this).blur();
-      })).on('mouseleave', function (e) {
-        var $b = $(this).find('.copy-btn');
-        setTimeout(function () {
-          $b.text('复制');
-        }, 300);
-      }).append(e);
-    })
-  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
 
 
   
