@@ -8,14 +8,13 @@ $(document).ready(function() {
    */
   CONFIG.fancybox && NexT.utils.wrapImageWithFancyBox();
   CONFIG.mediumzoom && window.mediumZoom('.post-body img');
-  CONFIG.fastclick && NexT.utils.isMobile() && window.FastClick.attach(document.body);
   CONFIG.lazyload && window.lozad('.post-body img').observe();
   CONFIG.pangu && window.pangu.spacingPage();
 
   CONFIG.copycode.enable && NexT.utils.registerCopyCode();
-  CONFIG.tabs && NexT.utils.registerTabsTag();
-  NexT.utils.registerESCKeyEvent();
   CONFIG.back2top.enable && NexT.utils.registerBackToTop();
+  CONFIG.tabs && NexT.utils.registerTabsTag();
+  NexT.utils.registerCanIUseTag();
   NexT.utils.embeddedVideoTransformer();
 
   // Mobile top menu bar.
@@ -56,10 +55,10 @@ $(document).ready(function() {
     // Initialize Sidebar & TOC Width.
     var scrollbarWidth = NexT.utils.getScrollbarWidth();
     if ($('.site-overview-wrap').height() > (document.body.clientHeight - NexT.utils.getSidebarSchemePadding())) {
-      $('.site-overview').css('width', 'calc(100% + ' + scrollbarWidth + 'px)');
+      $('.site-overview').css('width', `calc(100% + ${scrollbarWidth}px)`);
     }
     if ($('.post-toc-wrap').height() > (document.body.clientHeight - NexT.utils.getSidebarSchemePadding())) {
-      $('.post-toc').css('width', 'calc(100% + ' + scrollbarWidth + 'px)');
+      $('.post-toc').css('width', `calc(100% + ${scrollbarWidth}px)`);
     }
 
     // Initialize Sidebar & TOC Height.
