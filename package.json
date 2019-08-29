@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.8.0"
+    "version": "3.9.0"
   },
   "dependencies": {
-    "hexo": "^3.8.0",
+    "hexo": "^3.9.0",
     "hexo-deployer-git": "^1.0.0",
     "hexo-douban": "^1.0.7",
     "hexo-filter-flowchart": "^1.0.4",
@@ -19,6 +19,6 @@
     "hexo-renderer-markdown-it": "^3.4.1",
     "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.3.3",
-    "markdown-it-footnote": "^3.0.1"
+    "markdown-it-footnote": "^3.0.2"
   }
 }
