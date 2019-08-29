@@ -4,10 +4,9 @@
 
 
 
-<html class="theme-next gemini use-motion" lang="zh-CN,en,default">
+<html lang="zh-CN,en,default">
 <head>
   <meta charset="UTF-8">
-<meta name="generator" content="Hexo 3.8.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,38 +21,37 @@
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-<script id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
     version: '7.3.0',
+    exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
     pangu: false,
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    search: {
-      root: '/',
-      path: ''
-    },
-    tabs: true,
+    path: '',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
       copy_button: '复制',
       copy_success: '复制成功',
       copy_failure: '复制失败'
-    }
+    },
+    sidebarPadding: 40
   };
 </script>
 
@@ -67,13 +65,19 @@
   <link rel="canonical" href="https://tonybuaa.github.io/">
 
 
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
   };
 </script>
 
   <title>Log my life</title>
+  <meta name="generator" content="Hexo 3.9.0">
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131195761-1"></script>
   <script>
@@ -95,7 +99,6 @@
 
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -104,7 +107,7 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
   .use-motion .logo,
   .use-motion .site-title,
@@ -121,15 +124,14 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  <div class="container sidebar-position-left page-home">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Log my life</span>
@@ -148,82 +150,86 @@
 </div>
 
 
-
 <nav class="site-nav">
-    <ul id="menu" class="menu">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-home menu-item-active">
+        <li class="menu-item menu-item-home">
       
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-tags">
       
     
 
     <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-categories">
       
     
 
     <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-archives">
       
     
 
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-movies">
+        <li class="menu-item menu-item-movies">
       
     
 
     <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>电影</a>
 
   </li>
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-sitemap">
+        <li class="menu-item menu-item-sitemap">
       
     
 
     <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
 
   </li>
-    </ul>
-</nav>
+  </ul>
 
+</nav>
 </div>
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
 
     <main id="main" class="main">
@@ -233,19 +239,17 @@
 
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/zh-CN/2019/01/08/Enable-IPv6-support-for-ss-in-docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tonybuaa">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7">
     </span>
 
@@ -253,25 +257,18 @@
       <meta itemprop="name" content="Log my life">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/zh-CN/2019/01/08/Enable-IPv6-support-for-ss-in-docker/" class="post-title-link" itemprop="url">Enable IPv6 support for shadowsocks in docker</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/zh-CN/2019/01/08/Enable-IPv6-support-for-ss-in-docker/" class="post-title-link" itemprop="url">Enable IPv6 support for shadowsocks in docker</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -287,9 +284,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-06-10 10:49:00" itemprop="dateModified" datetime="2019-06-10T10:49:00+08:00">2019-06-10</time>
               </span>
             
@@ -298,9 +293,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a></span>
 
@@ -311,24 +304,20 @@
           
 
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/zh-CN/2019/01/08/Enable-IPv6-support-for-ss-in-docker/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/2019/01/08/Enable-IPv6-support-for-ss-in-docker/" itemprop="commentCount"></span>
-    </a>
+    <a title="valine" href="/zh-CN/2019/01/08/Enable-IPv6-support-for-ss-in-docker/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/zh-CN/2019/01/08/Enable-IPv6-support-for-ss-in-docker/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -339,8 +328,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>Bandwagon的VPS是没有IPv6支持的，如果想访问IPv6地址，需要用tunnel。搭建方法参见这个文章：<a href="https://www.bandwagonhost.net/2144.html" target="_blank" rel="noopener">给搬瓦工 KVM 版 VPS 配置 IPv6 支持（基于 Linux CentOS 7）</a>。</p>
+          <p>Bandwagon的VPS是没有IPv6支持的，如果想访问IPv6地址，需要用tunnel。搭建方法参见这个文章：<a href="https://www.bandwagonhost.net/2144.html" target="_blank" rel="noopener">给搬瓦工 KVM 版 VPS 配置 IPv6 支持（基于 Linux CentOS 7）</a>。</p>
 <p>这里要说的是如果让docker支持获取IPv6地址，并且打开shadowsocks对IPv6的支持。</p>
 <h1>为Docker分配IPv6地址段</h1>
 <p>这个方法来自<a href="https://docs.docker.com/v17.09/engine/userguide/networking/default_network/ipv6/" target="_blank" rel="noopener">IPv6 with Docker</a>。通过测试，只需要在vps中编辑<code>/etc/docker/daemon.json</code>，如果没有此文件就先创建。然后加入：</p>
@@ -371,7 +359,6 @@
 </table>
 <p>其他参数可以参考：<a href="https://github.com/shadowsocks/shadowsocks-libev#docker" target="_blank" rel="noopener">shadowsocks/shadowsocks-libev</a>。</p>
 
-          
         
       
     </div>
@@ -379,10 +366,10 @@
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -390,18 +377,16 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/zh-CN/2019/01/05/vmware-workstation-and-device-credential-guard-not-compatible/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tonybuaa">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7">
     </span>
 
@@ -409,25 +394,18 @@
       <meta itemprop="name" content="Log my life">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/zh-CN/2019/01/05/vmware-workstation-and-device-credential-guard-not-compatible/" class="post-title-link" itemprop="url">解决“VMware Workstation 与 Device/Credential Guard 不兼容”</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/zh-CN/2019/01/05/vmware-workstation-and-device-credential-guard-not-compatible/" class="post-title-link" itemprop="url">解决“VMware Workstation 与 Device/Credential Guard 不兼容”</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -443,9 +421,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-06-10 10:49:00" itemprop="dateModified" datetime="2019-06-10T10:49:00+08:00">2019-06-10</time>
               </span>
             
@@ -454,9 +430,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a></span>
 
@@ -467,24 +441,20 @@
           
 
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/zh-CN/2019/01/05/vmware-workstation-and-device-credential-guard-not-compatible/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/2019/01/05/vmware-workstation-and-device-credential-guard-not-compatible/" itemprop="commentCount"></span>
-    </a>
+    <a title="valine" href="/zh-CN/2019/01/05/vmware-workstation-and-device-credential-guard-not-compatible/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/zh-CN/2019/01/05/vmware-workstation-and-device-credential-guard-not-compatible/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -495,8 +465,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>Windows 10升级后，以前的VMware虚拟机无法启动了，提示“VMware Workstation 与 Device/Credential Guard 不兼容”，并且也无法创建新的64位虚拟机。</p>
+          <p>Windows 10升级后，以前的VMware虚拟机无法启动了，提示“VMware Workstation 与 Device/Credential Guard 不兼容”，并且也无法创建新的64位虚拟机。</p>
 <p>解决方法：</p>
 <ol>
 <li>在“程序和功能”中打开“启用或关闭Windows功能”，把Hyper-V取消。</li>
@@ -505,7 +474,6 @@
 <li>重启计算机。</li>
 </ol>
 
-          
         
       
     </div>
@@ -513,10 +481,10 @@
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -524,18 +492,16 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/zh-CN/2019/01/04/Use-mutt-postfix-to-send-mail-in-Linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tonybuaa">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7">
     </span>
 
@@ -543,25 +509,18 @@
       <meta itemprop="name" content="Log my life">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/zh-CN/2019/01/04/Use-mutt-postfix-to-send-mail-in-Linux/" class="post-title-link" itemprop="url">Use mutt/postfix to send mail in Linux</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/zh-CN/2019/01/04/Use-mutt-postfix-to-send-mail-in-Linux/" class="post-title-link" itemprop="url">Use mutt/postfix to send mail in Linux</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -577,9 +536,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-06-10 10:49:00" itemprop="dateModified" datetime="2019-06-10T10:49:00+08:00">2019-06-10</time>
               </span>
             
@@ -588,9 +545,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a></span>
 
@@ -601,24 +556,20 @@
           
 
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/zh-CN/2019/01/04/Use-mutt-postfix-to-send-mail-in-Linux/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/2019/01/04/Use-mutt-postfix-to-send-mail-in-Linux/" itemprop="commentCount"></span>
-    </a>
+    <a title="valine" href="/zh-CN/2019/01/04/Use-mutt-postfix-to-send-mail-in-Linux/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/zh-CN/2019/01/04/Use-mutt-postfix-to-send-mail-in-Linux/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -629,8 +580,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>折腾VPS上发邮件的原因是公司的WIFI从外网下载太慢，如果能够直接把文件下载到VPS上再用邮件塞到公司邮箱中下载，应该会快很多。我选择用Gmail来发送邮件，所以postfix的配置是Gmail的。</p>
+          <p>折腾VPS上发邮件的原因是公司的WIFI从外网下载太慢，如果能够直接把文件下载到VPS上再用邮件塞到公司邮箱中下载，应该会快很多。我选择用Gmail来发送邮件，所以postfix的配置是Gmail的。</p>
 <h1>Postfix</h1>
 <p>Postfix的安装配置主要参考这篇文章：<a href="https://www.linode.com/docs/email/postfix/configure-postfix-to-send-mail-using-gmail-and-google-apps-on-debian-or-ubuntu/#test-postfix" target="_blank" rel="noopener">Configure Postfix to Send Mail Using Gmail and Google Apps on Debian or Ubuntu</a>。在印象笔记中保存一份<a href="https://app.yinxiang.com/shard/s4/nl/266203/6a433dcd-1366-4946-8165-c27b4eaa4342" target="_blank" rel="noopener">备份</a>。</p>
 <h2 id="安装和配置"><a class="header-anchor" href="#安装和配置">¶</a>安装和配置</h2>
@@ -700,7 +650,6 @@ System mail name: 默认的域名就可以了</p>
 <p>邮件正文使用echo加管道符写进去。<br>
 如果对发送结果有疑问，可以查看系统日志：<code>tail -f /var/log/syslog</code>。</p>
 
-          
         
       
     </div>
@@ -708,10 +657,10 @@ System mail name: 默认的域名就可以了</p>
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -719,18 +668,16 @@ System mail name: 默认的域名就可以了</p>
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/en/2018/12/30/Speed-Test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tonybuaa">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7">
     </span>
 
@@ -738,25 +685,18 @@ System mail name: 默认的域名就可以了</p>
       <meta itemprop="name" content="Log my life">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/en/2018/12/30/Speed-Test/" class="post-title-link" itemprop="url">Speed Test</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/en/2018/12/30/Speed-Test/" class="post-title-link" itemprop="url">Speed Test</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -772,9 +712,7 @@ System mail name: 默认的域名就可以了</p>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-06-10 10:49:00" itemprop="dateModified" datetime="2019-06-10T10:49:00+08:00">2019-06-10</time>
               </span>
             
@@ -783,9 +721,7 @@ System mail name: 默认的域名就可以了</p>
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a></span>
 
@@ -796,24 +732,20 @@ System mail name: 默认的域名就可以了</p>
           
 
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/en/2018/12/30/Speed-Test/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/en/2018/12/30/Speed-Test/" itemprop="commentCount"></span>
-    </a>
+    <a title="valine" href="/en/2018/12/30/Speed-Test/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/en/2018/12/30/Speed-Test/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -824,13 +756,11 @@ System mail name: 默认的域名就可以了</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <h1>Direct connection to China Unicom (Multi Connection)</h1>
+          <h1>Direct connection to China Unicom (Multi Connection)</h1>
 <p><a href="https://www.speedtest.net/result/7918871453" target="_blank" rel="noopener"><img src="https://www.speedtest.net/result/7918871453.png"></a></p>
 <h1>Shadowsocks on Bandwagon HK Server (Single Connection)</h1>
 <p><a href="https://www.speedtest.net/result/7918874991" target="_blank" rel="noopener"><img src="https://www.speedtest.net/result/7918874991.png"></a></p>
 
-          
         
       
     </div>
@@ -838,10 +768,10 @@ System mail name: 默认的域名就可以了</p>
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -849,18 +779,16 @@ System mail name: 默认的域名就可以了</p>
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/en/2018/12/28/Merge-upstream-repo-for-submodule/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tonybuaa">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7">
     </span>
 
@@ -868,25 +796,18 @@ System mail name: 默认的域名就可以了</p>
       <meta itemprop="name" content="Log my life">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/en/2018/12/28/Merge-upstream-repo-for-submodule/" class="post-title-link" itemprop="url">Merge upstream repo for submodule</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/en/2018/12/28/Merge-upstream-repo-for-submodule/" class="post-title-link" itemprop="url">Merge upstream repo for submodule</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -902,9 +823,7 @@ System mail name: 默认的域名就可以了</p>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-06-10 10:49:00" itemprop="dateModified" datetime="2019-06-10T10:49:00+08:00">2019-06-10</time>
               </span>
             
@@ -913,9 +832,7 @@ System mail name: 默认的域名就可以了</p>
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a></span>
 
@@ -926,24 +843,20 @@ System mail name: 默认的域名就可以了</p>
           
 
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/en/2018/12/28/Merge-upstream-repo-for-submodule/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/en/2018/12/28/Merge-upstream-repo-for-submodule/" itemprop="commentCount"></span>
-    </a>
+    <a title="valine" href="/en/2018/12/28/Merge-upstream-repo-for-submodule/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/en/2018/12/28/Merge-upstream-repo-for-submodule/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -954,8 +867,7 @@ System mail name: 默认的域名就可以了</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <h1>Check remote branch</h1>
+          <h1>Check remote branch</h1>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git remote -v</span><br><span class="line">origin  git@github.com:tonybuaa/hexo-theme-next.git (fetch)</span><br><span class="line">origin  git@github.com:tonybuaa/hexo-theme-next.git (push)</span><br></pre></td></tr></table></figure>
 <p>We can only see the repo that we forked.</p>
 <h1>Add the remote upstream repo</h1>
@@ -972,7 +884,6 @@ System mail name: 默认的域名就可以了</p>
 <h1>Push updates to repo</h1>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git push</span><br><span class="line">Enumerating objects: 57, <span class="keyword">done</span>.</span><br><span class="line">Counting objects: 100% (57/57), <span class="keyword">done</span>.</span><br><span class="line">Delta compression using up to 4 threads</span><br><span class="line">Compressing objects: 100% (34/34), <span class="keyword">done</span>.</span><br><span class="line">Writing objects: 100% (35/35), 5.57 KiB | 407.00 KiB/s, <span class="keyword">done</span>.</span><br><span class="line">Total 35 (delta 29), reused 0 (delta 0)</span><br><span class="line">remote: Resolving deltas: 100% (29/29), completed with 21 <span class="built_in">local</span> objects.</span><br><span class="line">To github.com:tonybuaa/hexo-theme-next.git</span><br><span class="line">   4048615..e699386  dev -&gt; dev</span><br></pre></td></tr></table></figure>
 
-          
         
       
     </div>
@@ -980,10 +891,10 @@ System mail name: 默认的域名就可以了</p>
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -991,18 +902,16 @@ System mail name: 默认的域名就可以了</p>
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/zh-CN/2018/12/27/Log-location-to-huginn-with-tasker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tonybuaa">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7">
     </span>
 
@@ -1010,25 +919,18 @@ System mail name: 默认的域名就可以了</p>
       <meta itemprop="name" content="Log my life">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/zh-CN/2018/12/27/Log-location-to-huginn-with-tasker/" class="post-title-link" itemprop="url">使用Tasker定时记录位置到huginn</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/zh-CN/2018/12/27/Log-location-to-huginn-with-tasker/" class="post-title-link" itemprop="url">使用Tasker定时记录位置到huginn</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -1044,9 +946,7 @@ System mail name: 默认的域名就可以了</p>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-06-10 10:49:00" itemprop="dateModified" datetime="2019-06-10T10:49:00+08:00">2019-06-10</time>
               </span>
             
@@ -1055,9 +955,7 @@ System mail name: 默认的域名就可以了</p>
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a></span>
 
@@ -1068,24 +966,20 @@ System mail name: 默认的域名就可以了</p>
           
 
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/zh-CN/2018/12/27/Log-location-to-huginn-with-tasker/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/2018/12/27/Log-location-to-huginn-with-tasker/" itemprop="commentCount"></span>
-    </a>
+    <a title="valine" href="/zh-CN/2018/12/27/Log-location-to-huginn-with-tasker/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/zh-CN/2018/12/27/Log-location-to-huginn-with-tasker/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -1096,8 +990,7 @@ System mail name: 默认的域名就可以了</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <h1>Tasker</h1>
+          <h1>Tasker</h1>
 <h2 id="profiles"><a class="header-anchor" href="#profiles">¶</a>PROFILES</h2>
 <p>PROFILES中添加Time类型触发器，时间间隔为5分钟。关联到Huginn Locations的task。</p>
 <h2 id="tasks"><a class="header-anchor" href="#tasks">¶</a>TASKS</h2>
@@ -1177,7 +1070,6 @@ e=>end: write loc to file
 op1=>operation: coordinator_translator
 
 st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script>
-          
         
       
     </div>
@@ -1185,10 +1077,10 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -1196,18 +1088,16 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/ja/2018/12/27/The-First-Blog-in-Japanese/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tonybuaa">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7">
     </span>
 
@@ -1215,25 +1105,18 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
       <meta itemprop="name" content="Log my life">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/ja/2018/12/27/The-First-Blog-in-Japanese/" class="post-title-link" itemprop="url">最初の日本語ブログ</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/ja/2018/12/27/The-First-Blog-in-Japanese/" class="post-title-link" itemprop="url">最初の日本語ブログ</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -1249,33 +1132,27 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-06-10 10:49:00" itemprop="dateModified" datetime="2019-06-10T10:49:00+08:00">2019-06-10</time>
               </span>
             
           
 
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/ja/2018/12/27/The-First-Blog-in-Japanese/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/ja/2018/12/27/The-First-Blog-in-Japanese/" itemprop="commentCount"></span>
-    </a>
+    <a title="valine" href="/ja/2018/12/27/The-First-Blog-in-Japanese/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/ja/2018/12/27/The-First-Blog-in-Japanese/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -1286,10 +1163,8 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>日本語を勉強するために、今日から時々日本語でブログを書きます。</p>
+          <p>日本語を勉強するために、今日から時々日本語でブログを書きます。</p>
 
-          
         
       
     </div>
@@ -1297,10 +1172,10 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -1308,18 +1183,16 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/zh-CN/2018/12/27/Insert-iframe-in-hexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tonybuaa">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7">
     </span>
 
@@ -1327,25 +1200,18 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
       <meta itemprop="name" content="Log my life">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/zh-CN/2018/12/27/Insert-iframe-in-hexo/" class="post-title-link" itemprop="url">Insert iframe in hexo</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/zh-CN/2018/12/27/Insert-iframe-in-hexo/" class="post-title-link" itemprop="url">Insert iframe in hexo</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -1361,9 +1227,7 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-06-10 10:49:00" itemprop="dateModified" datetime="2019-06-10T10:49:00+08:00">2019-06-10</time>
               </span>
             
@@ -1372,9 +1236,7 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a></span>
 
@@ -1385,24 +1247,20 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
           
 
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/zh-CN/2018/12/27/Insert-iframe-in-hexo/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/2018/12/27/Insert-iframe-in-hexo/" itemprop="commentCount"></span>
-    </a>
+    <a title="valine" href="/zh-CN/2018/12/27/Insert-iframe-in-hexo/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/zh-CN/2018/12/27/Insert-iframe-in-hexo/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -1413,14 +1271,12 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>如果想要在文章中插入iframe，可以使用iframe blockquote：</p>
+          <p>如果想要在文章中插入iframe，可以使用iframe blockquote：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% iframe url [width] [height] %&#125;</span><br></pre></td></tr></table></figure>
 <p>下面是一个例子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% iframe https://www.google.com/maps/d/embed?mid=1W1e-nBuh3wSXZCpCgS0m6RJnpgJDa8rH 640 480 %&#125;</span><br></pre></td></tr></table></figure>
 <iframe src="https://www.google.com/maps/d/embed?mid=1W1e-nBuh3wSXZCpCgS0m6RJnpgJDa8rH" width="640" height="480" frameborder="0" allowfullscreen></iframe>
 
-          
         
       
     </div>
@@ -1428,10 +1284,10 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -1439,18 +1295,16 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/en/2018/12/25/Deploy-WEBDAV-on-VPS-with-docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tonybuaa">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7">
     </span>
 
@@ -1458,25 +1312,18 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
       <meta itemprop="name" content="Log my life">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/en/2018/12/25/Deploy-WEBDAV-on-VPS-with-docker/" class="post-title-link" itemprop="url">Deploy WEBDAV on VPS with docker</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/en/2018/12/25/Deploy-WEBDAV-on-VPS-with-docker/" class="post-title-link" itemprop="url">Deploy WEBDAV on VPS with docker</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -1492,9 +1339,7 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-06-10 10:49:00" itemprop="dateModified" datetime="2019-06-10T10:49:00+08:00">2019-06-10</time>
               </span>
             
@@ -1503,9 +1348,7 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a></span>
 
@@ -1516,24 +1359,20 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
           
 
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/en/2018/12/25/Deploy-WEBDAV-on-VPS-with-docker/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/en/2018/12/25/Deploy-WEBDAV-on-VPS-with-docker/" itemprop="commentCount"></span>
-    </a>
+    <a title="valine" href="/en/2018/12/25/Deploy-WEBDAV-on-VPS-with-docker/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/en/2018/12/25/Deploy-WEBDAV-on-VPS-with-docker/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -1544,13 +1383,11 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>Use this command to start a webdav server.</p>
+          <p>Use this command to start a webdav server.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --restart always -v /home/webdav:/var/lib/dav -e AUTH_TYPE=Digest -e USERNAME=tony -e PASSWORD=secret1234 --publish 8080:80 -d bytemark/webdav</span><br></pre></td></tr></table></figure>
 <p>Project on dockerhub: <a href="https://hub.docker.com/r/bytemark/webdav/" target="_blank" rel="noopener">https://hub.docker.com/r/bytemark/webdav/</a></p>
 <p>The data is actually store at <code>/home/webdav/data/</code>.</p>
 
-          
         
       
     </div>
@@ -1558,10 +1395,10 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -1569,18 +1406,16 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/en/2018/12/25/Deploy-v2ray-on-bandwagon-with-docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tonybuaa">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7">
     </span>
 
@@ -1588,25 +1423,18 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
       <meta itemprop="name" content="Log my life">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/en/2018/12/25/Deploy-v2ray-on-bandwagon-with-docker/" class="post-title-link" itemprop="url">Deploy v2ray on bandwagon with docker</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/en/2018/12/25/Deploy-v2ray-on-bandwagon-with-docker/" class="post-title-link" itemprop="url">Deploy v2ray on bandwagon with docker</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -1622,9 +1450,7 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-06-10 10:49:00" itemprop="dateModified" datetime="2019-06-10T10:49:00+08:00">2019-06-10</time>
               </span>
             
@@ -1633,9 +1459,7 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a></span>
 
@@ -1646,24 +1470,20 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
           
 
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/en/2018/12/25/Deploy-v2ray-on-bandwagon-with-docker/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/en/2018/12/25/Deploy-v2ray-on-bandwagon-with-docker/" itemprop="commentCount"></span>
-    </a>
+    <a title="valine" href="/en/2018/12/25/Deploy-v2ray-on-bandwagon-with-docker/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/en/2018/12/25/Deploy-v2ray-on-bandwagon-with-docker/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -1674,8 +1494,7 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <ol>
+          <ol>
 <li>Pull v2ray official image</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull v2ray/official</span><br></pre></td></tr></table></figure>
@@ -1688,7 +1507,6 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name v2ray -v /etc/v2ray:/etc/v2ray -p 527:527 -p 527:527/udp v2ray/official v2ray -config=/etc/v2ray/config.json</span><br></pre></td></tr></table></figure>
 
-          
         
       
     </div>
@@ -1696,10 +1514,10 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -1707,7 +1525,7 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
   </article>
 
     
-  </section>
+  </div>
 
   
   <nav class="pagination">
@@ -1729,16 +1547,30 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" src="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7" alt="tonybuaa">
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7"
+      alt="tonybuaa">
   <p class="site-author-name" itemprop="name">tonybuaa</p>
-  <div class="site-description motion-element" itemprop="description"></div>
+  <div class="site-description" itemprop="description"></div>
 </div>
   <nav class="site-state motion-element">
       <div class="site-state-item site-state-posts">
@@ -1836,7 +1668,6 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
 
 
 
-        </div>
       </div>
 
     </div>
@@ -1855,7 +1686,7 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
   </span>
   <span class="author" itemprop="copyrightHolder">tonybuaa</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
 
@@ -1868,34 +1699,49 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
 
 
 
+
+
+
+
         
       </div>
     </footer>
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-      </div>
-
-    
-
   </div>
 
   
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
 
-  <script src="/js/utils.js?v=7.3.0"></script>
-  <script src="/js/motion.js?v=7.3.0"></script>
-
-  
-  <script src="/js/affix.js?v=7.3.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+<script src="/js/next-boot.js?v=7.3.0"></script>
 
 
 
   
 
-  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 
@@ -1903,50 +1749,12 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
 
   
 
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 
 <script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
   var GUEST = ['nick', 'mail', 'link'];
   var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
+  guest = guest.split(',').filter(item => {
     return GUEST.indexOf(item) > -1;
   });
   new Valine({
@@ -1960,10 +1768,11 @@ st->op1->e</textarea><textarea id="flowchart-0-options" style="display: none">{"
     meta: guest,
     pageSize: '10' || 10,
     visitor: false,
-    lang: '' || 'zh-cn'
+    lang: '' || 'zh-cn',
+    path: location.pathname
   });
+}, window.Valine);
 </script>
-
 
 </body>
 </html>
