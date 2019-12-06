@@ -195,6 +195,107 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/en/2018/12/25/Deploy-v2ray-on-bandwagon-with-docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7">
+      <meta itemprop="name" content="tonybuaa">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Log my life">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/en/2018/12/25/Deploy-v2ray-on-bandwagon-with-docker/" class="post-title-link" itemprop="url">Deploy v2ray on bandwagon with docker</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-12-25 18:15:31" itemprop="dateCreated datePublished" datetime="2018-12-25T18:15:31+08:00">2018-12-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-06-10 10:49:00" itemprop="dateModified" datetime="2019-06-10T10:49:00+08:00">2019-06-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index">
+                    <span itemprop="name">Technology</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/en/2018/12/25/Deploy-v2ray-on-bandwagon-with-docker/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/en/2018/12/25/Deploy-v2ray-on-bandwagon-with-docker/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>Pull v2ray official image</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull v2ray/official</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Prepare <code>config.json</code>. Then create <code>v2ray</code> folder under /etc, and copy <code>config.json</code> into it.</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"log"</span>: &#123;</span><br><span class="line">        <span class="attr">"access"</span>: <span class="string">"/var/log/v2ray/access.log"</span>,</span><br><span class="line">        <span class="attr">"error"</span>: <span class="string">"/var/log/v2ray/error.log"</span>,</span><br><span class="line">        <span class="attr">"loglevel"</span>: <span class="string">"warning"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"inbound"</span>: &#123;</span><br><span class="line">        <span class="attr">"port"</span>: <span class="number">527</span>,</span><br><span class="line">        <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">        <span class="attr">"settings"</span>: &#123;</span><br><span class="line">            <span class="attr">"udp"</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">"clients"</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">"id"</span>: <span class="string">"&lt;your-uuid&gt;"</span>,</span><br><span class="line">                    <span class="attr">"level"</span>: <span class="number">1</span>,</span><br><span class="line">                    <span class="attr">"alterId"</span>: <span class="number">527</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"streamSettings"</span>: &#123;</span><br><span class="line">            <span class="attr">"network"</span>: <span class="string">"kcp"</span>,</span><br><span class="line">            <span class="attr">"kcpSettings"</span>: &#123;</span><br><span class="line">                <span class="attr">"mtu"</span>: <span class="number">1350</span>,</span><br><span class="line">                <span class="attr">"tti"</span>: <span class="number">50</span>,</span><br><span class="line">                <span class="attr">"uplinkCapacity"</span>: <span class="number">100</span>,</span><br><span class="line">                <span class="attr">"downlinkCapacity"</span>: <span class="number">100</span>,</span><br><span class="line">                <span class="attr">"congestion"</span>: <span class="literal">false</span>,</span><br><span class="line">                <span class="attr">"readBufferSize"</span>: <span class="number">2</span>,</span><br><span class="line">                <span class="attr">"writeBufferSize"</span>: <span class="number">2</span>,</span><br><span class="line">                <span class="attr">"header"</span>: &#123;</span><br><span class="line">                    <span class="attr">"type"</span>: <span class="string">"wechat-video"</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"outbound"</span>: &#123;</span><br><span class="line">        <span class="attr">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">        <span class="attr">"settings"</span>: &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"inboundDetour"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"protocol"</span>: <span class="string">"shadowsocks"</span>,</span><br><span class="line">            <span class="attr">"port"</span>: <span class="number">9052</span>,</span><br><span class="line">            <span class="attr">"settings"</span>: &#123;</span><br><span class="line">                <span class="attr">"method"</span>: <span class="string">"chacha20-poly1305"</span>,</span><br><span class="line">                <span class="attr">"password"</span>: <span class="string">"&lt;your-password&gt;"</span>,</span><br><span class="line">                <span class="attr">"udp"</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">"level"</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="attr">"ota"</span>: <span class="literal">false</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"outboundDetour"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"protocol"</span>: <span class="string">"blackhole"</span>,</span><br><span class="line">            <span class="attr">"settings"</span>: &#123;&#125;,</span><br><span class="line">            <span class="attr">"tag"</span>: <span class="string">"blocked"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"routing"</span>: &#123;</span><br><span class="line">        <span class="attr">"strategy"</span>: <span class="string">"rules"</span>,</span><br><span class="line">        <span class="attr">"settings"</span>: &#123;</span><br><span class="line">            <span class="attr">"rules"</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">"type"</span>: <span class="string">"field"</span>,</span><br><span class="line">                    <span class="attr">"ip"</span>: [</span><br><span class="line">                        <span class="string">"0.0.0.0/8"</span>,</span><br><span class="line">                        <span class="string">"10.0.0.0/8"</span>,</span><br><span class="line">                        <span class="string">"100.64.0.0/10"</span>,</span><br><span class="line">                        <span class="string">"127.0.0.0/8"</span>,</span><br><span class="line">                        <span class="string">"169.254.0.0/16"</span>,</span><br><span class="line">                        <span class="string">"172.16.0.0/12"</span>,</span><br><span class="line">                        <span class="string">"192.0.0.0/24"</span>,</span><br><span class="line">                        <span class="string">"192.0.2.0/24"</span>,</span><br><span class="line">                        <span class="string">"192.168.0.0/16"</span>,</span><br><span class="line">                        <span class="string">"198.18.0.0/15"</span>,</span><br><span class="line">                        <span class="string">"198.51.100.0/24"</span>,</span><br><span class="line">                        <span class="string">"203.0.113.0/24"</span>,</span><br><span class="line">                        <span class="string">"::1/128"</span>,</span><br><span class="line">                        <span class="string">"fc00::/7"</span>,</span><br><span class="line">                        <span class="string">"fe80::/10"</span></span><br><span class="line">                    ],</span><br><span class="line">                    <span class="attr">"outboundTag"</span>: <span class="string">"blocked"</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>Deploy</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name v2ray -v /etc/v2ray:/etc/v2ray -p 527:527 -p 527:527/udp v2ray/official v2ray -config=/etc/v2ray/config.json</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/en/2018/12/24/How-to-deploy-Huginn-with-docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -356,7 +457,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -369,7 +470,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
