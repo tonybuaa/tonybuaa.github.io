@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 4.1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -45,20 +45,21 @@
   };
 </script>
 
-  <meta name="description" content="Use this command to start a webdav server. 1docker run --restart always -v /home/webdav:/var/lib/dav -e AUTH_TYPE=Digest -e USERNAME=tony -e PASSWORD=secret1234 --publish 8080:80 -d bytemark/webdav Pr">
-<meta name="keywords" content="webdav,docker,vps">
+  <meta name="description" content="Deploy a huginn server with docker:  1docker run -it -p 3000:3000 -v &#x2F;home&#x2F;huginn&#x2F;mysql-data:&#x2F;var&#x2F;lib&#x2F;mysql huginn&#x2F;huginn If following error is observed:  1bootstrap stderr | mv:  bootstrap stderr |">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Deploy WEBDAV on VPS with docker">
-<meta property="og:url" content="https://tonybuaa.github.io/en/2018/12/25/Deploy-WEBDAV-on-VPS-with-docker/index.html">
+<meta property="og:title" content="How to deploy Huginn with docker">
+<meta property="og:url" content="https:&#x2F;&#x2F;tonybuaa.github.io&#x2F;zh-CN&#x2F;2018&#x2F;12&#x2F;24&#x2F;How-to-deploy-Huginn-with-docker&#x2F;index.html">
 <meta property="og:site_name" content="Log my life">
-<meta property="og:description" content="Use this command to start a webdav server. 1docker run --restart always -v /home/webdav:/var/lib/dav -e AUTH_TYPE=Digest -e USERNAME=tony -e PASSWORD=secret1234 --publish 8080:80 -d bytemark/webdav Pr">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-06-10T02:49:00.140Z">
+<meta property="og:description" content="Deploy a huginn server with docker:  1docker run -it -p 3000:3000 -v &#x2F;home&#x2F;huginn&#x2F;mysql-data:&#x2F;var&#x2F;lib&#x2F;mysql huginn&#x2F;huginn If following error is observed:  1bootstrap stderr | mv:  bootstrap stderr |">
+<meta property="article:published_time" content="2018-12-24T08:04:40.000Z">
+<meta property="article:modified_time" content="2019-06-10T02:49:00.143Z">
+<meta property="article:author" content="tonybuaa">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="vps">
+<meta property="article:tag" content="huginn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Deploy WEBDAV on VPS with docker">
-<meta name="twitter:description" content="Use this command to start a webdav server. 1docker run --restart always -v /home/webdav:/var/lib/dav -e AUTH_TYPE=Digest -e USERNAME=tony -e PASSWORD=secret1234 --publish 8080:80 -d bytemark/webdav Pr">
 
-<link rel="canonical" href="https://tonybuaa.github.io/en/2018/12/25/Deploy-WEBDAV-on-VPS-with-docker/">
+<link rel="canonical" href="https://tonybuaa.github.io/zh-CN/2018/12/24/How-to-deploy-Huginn-with-docker/">
 
 
 <script id="page-configurations">
@@ -72,7 +73,7 @@
   };
 </script>
 
-  <title>Deploy WEBDAV on VPS with docker | Log my life</title>
+  <title>How to deploy Huginn with docker | Log my life</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131195761-1"></script>
     <script>
@@ -200,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/en/2018/12/25/Deploy-WEBDAV-on-VPS-with-docker/">
+    <link itemprop="mainEntityOfPage" href="https://tonybuaa.github.io/zh-CN/2018/12/24/How-to-deploy-Huginn-with-docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://www.gravatar.com/avatar/71d3e219254ba00bc22b0a18ef5075e7">
@@ -213,7 +214,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Deploy WEBDAV on VPS with docker
+          How to deploy Huginn with docker
         </h1>
 
         <div class="post-meta">
@@ -223,7 +224,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-12-25 18:32:08" itemprop="dateCreated datePublished" datetime="2018-12-25T18:32:08+08:00">2018-12-25</time>
+              <time title="Created: 2018-12-24 16:04:40" itemprop="dateCreated datePublished" datetime="2018-12-24T16:04:40+08:00">2018-12-24</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -253,8 +254,8 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/en/2018/12/25/Deploy-WEBDAV-on-VPS-with-docker/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/en/2018/12/25/Deploy-WEBDAV-on-VPS-with-docker/" itemprop="commentCount"></span>
+    <a title="valine" href="/zh-CN/2018/12/24/How-to-deploy-Huginn-with-docker/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/2018/12/24/How-to-deploy-Huginn-with-docker/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -269,10 +270,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Use this command to start a webdav server.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --restart always -v /home/webdav:/var/lib/dav -e AUTH_TYPE=Digest -e USERNAME=tony -e PASSWORD=secret1234 --publish 8080:80 -d bytemark/webdav</span><br></pre></td></tr></table></figure>
-<p>Project on dockerhub: <a href="https://hub.docker.com/r/bytemark/webdav/" target="_blank" rel="noopener">https://hub.docker.com/r/bytemark/webdav/</a></p>
-<p>The data is actually store at <code>/home/webdav/data/</code>.</p>
+        <ol>
+<li>
+<p>Deploy a huginn server with docker:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker run -it -p 3000:3000 -v /home/huginn/mysql-data:/var/lib/mysql huginn/huginn</span></pre></td></tr></table></figure>
+<p>If following error is observed:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">bootstrap stderr | mv:  bootstrap stderr | cannot create directory ‘/var/lib/mysql/mysql’ bootstrap stderr | : Permission denied bootstrap stderr |</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">bootstrap stderr | mv:  bootstrap stderr | cannot create directory ‘/var/lib/mysql/performance_schema’ bootstrap stderr | : Permission denied bootstrap stderr |</span></pre></td></tr></table></figure>
+<p>then run:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chown 1001:1001 mysql-data/</span></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Open Huginn in the browser <code>http://&lt;server-ip&gt;:3000</code></p>
+</li>
+<li>
+<p>Log in to your Huginn instance using the username  <code>admin</code>  and password <code>password</code></p>
+</li>
+<li>
+<p>Modify .env file in container:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it mystifying_buck bash</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">vi /app/.env</span></pre></td></tr></table></figure>
+<p>Make change to following settings:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ENABLE_INSECURE_AGENTS&#x3D;&quot;true&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">TIMEZONE&#x3D;&quot;Beijing&quot;</span></pre></td></tr></table></figure>
+<p>Save and exit container.</p>
+</li>
+<li>
+<p>Restart container to take effect:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container restart mystifying_buck</span></pre></td></tr></table></figure></li>
+</ol>
 
     </div>
 
@@ -282,9 +305,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/webdav/" rel="tag"># webdav</a>
               <a href="/tags/docker/" rel="tag"># docker</a>
               <a href="/tags/vps/" rel="tag"># vps</a>
+              <a href="/tags/huginn/" rel="tag"># huginn</a>
           </div>
 
         
@@ -292,13 +315,10 @@
 
         
     <div class="post-nav">
+      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/en/2018/12/25/Deploy-v2ray-on-bandwagon-with-docker/" rel="prev" title="Deploy v2ray on bandwagon with docker">
-      <i class="fa fa-chevron-left"></i> Deploy v2ray on bandwagon with docker
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/zh-CN/2018/12/27/Insert-iframe-in-hexo/" rel="next" title="Insert iframe in hexo">
-      Insert iframe in hexo <i class="fa fa-chevron-right"></i>
+    <a href="/zh-CN/2018/12/25/Deploy-v2ray-on-bandwagon-with-docker/" rel="next" title="Deploy v2ray on bandwagon with docker">
+      Deploy v2ray on bandwagon with docker <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -405,7 +425,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">tonybuaa</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
@@ -428,9 +448,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 

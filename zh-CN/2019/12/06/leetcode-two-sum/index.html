@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 4.1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -46,17 +46,18 @@
 </script>
 
   <meta name="description" content="题目 Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the sam">
-<meta name="keywords" content="leetcode,rust">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Two Sum">
-<meta property="og:url" content="https://tonybuaa.github.io/zh-CN/2019/12/06/leetcode-two-sum/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;tonybuaa.github.io&#x2F;zh-CN&#x2F;2019&#x2F;12&#x2F;06&#x2F;leetcode-two-sum&#x2F;index.html">
 <meta property="og:site_name" content="Log my life">
 <meta property="og:description" content="题目 Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the sam">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-09T07:13:10.562Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-06T07:40:50.000Z">
+<meta property="article:modified_time" content="2019-12-09T07:13:10.562Z">
+<meta property="article:author" content="tonybuaa">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="rust">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Two Sum">
-<meta name="twitter:description" content="题目 Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the sam">
 
 <link rel="canonical" href="https://tonybuaa.github.io/zh-CN/2019/12/06/leetcode-two-sum/">
 
@@ -262,10 +263,10 @@
 <p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
 <p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
 <p>Example:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Given nums = [2, 7, 11, 15], target = 9,</span><br><span class="line"></span><br><span class="line">Because nums[0] + nums[1] = 2 + 7 = 9,</span><br><span class="line">return [0, 1].</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Given nums &#x3D; [2, 7, 11, 15], target &#x3D; 9,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Because nums[0] + nums[1] &#x3D; 2 + 7 &#x3D; 9,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">return [0, 1].</span></pre></td></tr></table></figure>
 <h1>解答</h1>
 <h2 id="rust"><a class="header-anchor" href="#rust">¶</a>Rust</h2>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::HashMap;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> nums = <span class="built_in">vec!</span>[<span class="number">2</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">15</span>];</span><br><span class="line">    <span class="keyword">let</span> target = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">let</span> r = two_sum(nums, target);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print!</span>(<span class="string">"r &#123;:?&#125;\n"</span>, r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">two_sum</span></span>(nums: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, target: <span class="built_in">i32</span>) -&gt; <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> seen: HashMap&lt;<span class="built_in">i32</span>, <span class="built_in">i32</span>&gt; = HashMap::new();</span><br><span class="line">    <span class="keyword">for</span> (i, num) <span class="keyword">in</span> nums.iter().enumerate() &#123;</span><br><span class="line">        <span class="keyword">if</span> seen.contains_key(num) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">vec!</span>[seen[num], i <span class="keyword">as</span> <span class="built_in">i32</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            seen.insert(target - num, i <span class="keyword">as</span> <span class="built_in">i32</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">vec!</span>[]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::HashMap;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> nums = <span class="built_in">vec!</span>[<span class="number">2</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">15</span>];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> target = <span class="number">9</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> r = two_sum(nums, target);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">print!</span>(<span class="string">"r &#123;:?&#125;\n"</span>, r);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">two_sum</span></span>(nums: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, target: <span class="built_in">i32</span>) -&gt; <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> seen: HashMap&lt;<span class="built_in">i32</span>, <span class="built_in">i32</span>&gt; = HashMap::new();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (i, num) <span class="keyword">in</span> nums.iter().enumerate() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> seen.contains_key(num) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">return</span> <span class="built_in">vec!</span>[seen[num], i <span class="keyword">as</span> <span class="built_in">i32</span>];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        &#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">            seen.insert(target - num, i <span class="keyword">as</span> <span class="built_in">i32</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">vec!</span>[]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <h1>笔记</h1>
 <ol>
 <li><code>iter().enumerate()</code>返回的index类型是<code>usize</code>，而我们要返回的Vec是<code>i32</code>类型的，所以在用<code>vec!</code>构建Vec的时候要用<code>as</code>转一下。</li>
@@ -404,7 +405,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">tonybuaa</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
@@ -427,9 +428,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 4.1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -46,17 +46,20 @@
 </script>
 
   <meta name="description" content="Bandwagon的VPS是没有IPv6支持的，如果想访问IPv6地址，需要用tunnel。搭建方法参见这个文章：给搬瓦工 KVM 版 VPS 配置 IPv6 支持（基于 Linux CentOS 7）。 这里要说的是如果让docker支持获取IPv6地址，并且打开shadowsocks对IPv6的支持。 为Docker分配IPv6地址段 这个方法来自IPv6 with Docker。通过测试，只">
-<meta name="keywords" content="docker,vps,shadowsocks,ipv6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Enable IPv6 support for shadowsocks in docker">
-<meta property="og:url" content="https://tonybuaa.github.io/zh-CN/2019/01/08/Enable-IPv6-support-for-ss-in-docker/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;tonybuaa.github.io&#x2F;zh-CN&#x2F;2019&#x2F;01&#x2F;08&#x2F;Enable-IPv6-support-for-ss-in-docker&#x2F;index.html">
 <meta property="og:site_name" content="Log my life">
 <meta property="og:description" content="Bandwagon的VPS是没有IPv6支持的，如果想访问IPv6地址，需要用tunnel。搭建方法参见这个文章：给搬瓦工 KVM 版 VPS 配置 IPv6 支持（基于 Linux CentOS 7）。 这里要说的是如果让docker支持获取IPv6地址，并且打开shadowsocks对IPv6的支持。 为Docker分配IPv6地址段 这个方法来自IPv6 with Docker。通过测试，只">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-10T02:49:00.142Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-01-08T07:43:26.000Z">
+<meta property="article:modified_time" content="2019-06-10T02:49:00.142Z">
+<meta property="article:author" content="tonybuaa">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="vps">
+<meta property="article:tag" content="shadowsocks">
+<meta property="article:tag" content="ipv6">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Enable IPv6 support for shadowsocks in docker">
-<meta name="twitter:description" content="Bandwagon的VPS是没有IPv6支持的，如果想访问IPv6地址，需要用tunnel。搭建方法参见这个文章：给搬瓦工 KVM 版 VPS 配置 IPv6 支持（基于 Linux CentOS 7）。 这里要说的是如果让docker支持获取IPv6地址，并且打开shadowsocks对IPv6的支持。 为Docker分配IPv6地址段 这个方法来自IPv6 with Docker。通过测试，只">
 
 <link rel="canonical" href="https://tonybuaa.github.io/zh-CN/2019/01/08/Enable-IPv6-support-for-ss-in-docker/">
 
@@ -273,12 +276,12 @@
 <p>这里要说的是如果让docker支持获取IPv6地址，并且打开shadowsocks对IPv6的支持。</p>
 <h1>为Docker分配IPv6地址段</h1>
 <p>这个方法来自<a href="https://docs.docker.com/v17.09/engine/userguide/networking/default_network/ipv6/" target="_blank" rel="noopener">IPv6 with Docker</a>。通过测试，只需要在vps中编辑<code>/etc/docker/daemon.json</code>，如果没有此文件就先创建。然后加入：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"ipv6"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"fixed-cidr-v6"</span>: <span class="string">"2001:470:24:b55::/64"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"ipv6"</span>: <span class="literal">true</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"fixed-cidr-v6"</span>: <span class="string">"2001:470:24:b55::/64"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>其中<code>fixed-cidr-v6</code>来自tunnelbroker的<code>Routed IPv6 Prefixes</code>。<br>
 重启Docker后，可以在container里ping通<code>ipv6.google.com</code>。</p>
 <h1>运行shadowsocks时加入IPv6支持选项</h1>
 <p>我一直使用<a href="https://hub.docker.com/r/mritd/shadowsocks/" target="_blank" rel="noopener">mritd/shadowsocks</a>，现在为了支持IPv6，只需新加一些参数。完整的命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -dt --name ssserver -p 9052:9052 -p 9052:9052/udp mritd/shadowsocks \</span><br><span class="line">-s &quot;-s 0.0.0.0 -s :: -p 9052 -m chacha20-ietf-poly1305 -k &lt;yourpassword&gt; --fast-open -u -6&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker run -dt --name ssserver -p 9052:9052 -p 9052:9052&#x2F;udp mritd&#x2F;shadowsocks \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">-s &quot;-s 0.0.0.0 -s :: -p 9052 -m chacha20-ietf-poly1305 -k &lt;yourpassword&gt; --fast-open -u -6&quot;</span></pre></td></tr></table></figure>
 <p>主要增加了：</p>
 <table>
 <thead>
@@ -433,7 +436,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">tonybuaa</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
@@ -456,9 +459,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 
